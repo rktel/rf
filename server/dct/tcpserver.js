@@ -29,6 +29,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
         socket.on('data', (rawData) => {
             const { mobileID } = parseData(rawData)
             if (mobileID) {
+                g(mobileID)
                 socket.write(mobileID)
                 if (!socket['mobileID']) {
                     socket['mobileID'] = mobileID
