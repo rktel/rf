@@ -1,0 +1,1 @@
+export default g = (...params) => console.log(...params)
