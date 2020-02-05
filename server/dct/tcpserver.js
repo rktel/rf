@@ -5,11 +5,12 @@ import { rstream } from '../../imports/api/streamers'
 function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
-    const sendMobilesToWebTimer = 10 * 1000
+    const toWebTimer = 10 * 1000
     // Send mobiles to Web Client
     setInterval(() => {
+        g('toWebTimer', Array.from(mobiles.keys()))
         deliveryMobiles(Array.from(mobiles.keys()))
-    }, sendMobilesToWebTimer)
+    }, toWebTimer)
     //server 
     const server = srv()
     server.listen(port, host)
