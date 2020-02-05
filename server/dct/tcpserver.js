@@ -6,7 +6,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
-    const socketTimeout = 1000 * 120
+    const socketTimeout = 1000 * 60
     // Send mobiles to Web Client
     setInterval(() => {
         deliveryMobiles(Array.from(mobiles.keys()))
@@ -28,7 +28,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     })
     server.on('connection', (socket) => {
         socket.setTimeout(socketTimeout);
-        
+
         rstream.on('command', (cmdMobileID, cmdMessage) => {
             if (socket.mobileID === cmdMobileID) {
                 const sendSuccess = socket.write(cmdMessage)
@@ -51,6 +51,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
             g('socket timeout', socket.mobileID);
             socket.end();
             socket.destroy();
+            mobiles.delete(socket.mobileID)
         });
         socket.on('close', (hadError) => {
             g('socket:close:', socket.mobileID, 'Error Tx:', hadError)
