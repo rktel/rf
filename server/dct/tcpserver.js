@@ -47,7 +47,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
         })
         socket.on('close', (hadError) => {
             g('socket:close:', socket.mobileID, 'Error Tx:', hadError)
-            if (hadError && socket.mobileID) mobiles.delete(socket.mobileID)
+            // if (hadError && socket.mobileID) mobiles.delete(socket.mobileID)
         })
         socket.on('error', () => g('socket:error:', socket.mobileID)
         )
