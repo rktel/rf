@@ -31,9 +31,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
             if (socket.mobileID === cmdMobileID) {
                 const sendSuccess = socket.write(cmdMessage)
                 g('Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
-            } else {
-                g(cmdMobileID, ' No encontrado, Falla al intentar enviar comando ', cmdMessage)
-            }
+            } 
         })
         socket.on('data', (rawData) => {
             const { mobileID } = parseData(rawData)
