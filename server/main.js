@@ -1,5 +1,5 @@
 Meteor.startup(function() {
-    var restartFrequency = 1000 * 60 * 2 ; // 2 minutes
+    var restartFrequency = 1000 * 60 * 30 ; // 30 minutes
     setInterval(function () {
         process.exit();
     }, restartFrequency);
