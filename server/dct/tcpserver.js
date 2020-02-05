@@ -37,12 +37,12 @@ function serverTCP(srv, port, host = '0.0.0.0') {
             }
         })
         socket.on('close', (hadError) => {
-            log('socket:close:', socket.mobileID, 'Error Tx:', hadError)
+            g('socket:close:', socket.mobileID, 'Error Tx:', hadError)
             if (hadError && socket.mobileID) mobiles.delete(socket.mobileID)
         })
-        socket.on('error', () => log('socket:error:', socket.mobileID)
+        socket.on('error', () => g('socket:error:', socket.mobileID)
         )
-        socket.on('end', () => log('socket:end:', socket.mobileID))
+        socket.on('end', () => g('socket:end:', socket.mobileID))
     })
 
     // Process Data
