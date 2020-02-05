@@ -5,7 +5,8 @@ import { rstream } from '../../imports/api/streamers'
 function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
-    const toWebTimer = 10 * 1000
+    const toWebTimer = 1000 * 10
+    const socketTimeout = 1000 * 120
     // Send mobiles to Web Client
     setInterval(() => {
         deliveryMobiles(Array.from(mobiles.keys()))
@@ -26,12 +27,13 @@ function serverTCP(srv, port, host = '0.0.0.0') {
         }
     })
     server.on('connection', (socket) => {
-
+        socket.setTimeout(socketTimeout);
+        
         rstream.on('command', (cmdMobileID, cmdMessage) => {
             if (socket.mobileID === cmdMobileID) {
                 const sendSuccess = socket.write(cmdMessage)
                 g('Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
-            } 
+            }
         })
         socket.on('data', (rawData) => {
             const { mobileID } = parseData(rawData)
@@ -45,6 +47,11 @@ function serverTCP(srv, port, host = '0.0.0.0') {
                 }
             }
         })
+        socket.on('timeout', () => {
+            g('socket timeout', socket.mobileID);
+            socket.end();
+            socket.destroy();
+        });
         socket.on('close', (hadError) => {
             g('socket:close:', socket.mobileID, 'Error Tx:', hadError)
             // if (hadError && socket.mobileID) mobiles.delete(socket.mobileID)
