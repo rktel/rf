@@ -1,3 +1,4 @@
+import g from '../imports/tools/log'
 import React, { useState, useEffect } from 'react'
 import { rstream } from '../imports/api/streamers'
 
@@ -5,12 +6,13 @@ const App = () => {
     const [mobiles, setMobiles] = useState([])
     useEffect(() => {
         rstream.on('deliveryMobiles', (mobileArray) => {
+            g(mobileArray)
             setMobiles(mobileArray)
         })
     }, [])
     return (
         <div>
-            Main App
+            Main App Pepa
             <ul>
                 {mobiles.map((mobil, index) => <li key={mobil}>{mobil}</li>)}
             </ul>
