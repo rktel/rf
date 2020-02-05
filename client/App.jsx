@@ -10,11 +10,14 @@ const App = () => {
             setMobiles(mobileArray)
         })
     }, [])
+    const sendCommand = (mobil) => {
+        rstream.emit('command', mobil, '>QID<')
+    }
     return (
         <div>
             Main App Pepa
             <ul>
-                {mobiles.map((mobil, index) => <li key={mobil}>{mobil}</li>)}
+                {mobiles.map((mobil, index) => <li key={mobil}>{mobil} <button onClick={() => sendCommand(mobil)}>Send</button> </li>)}
             </ul>
         </div>
     )

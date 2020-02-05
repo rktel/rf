@@ -8,7 +8,6 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     const toWebTimer = 10 * 1000
     // Send mobiles to Web Client
     setInterval(() => {
-        g('toWebTimer', Array.from(mobiles.keys()))
         deliveryMobiles(Array.from(mobiles.keys()))
     }, toWebTimer)
     //server 
@@ -27,8 +26,18 @@ function serverTCP(srv, port, host = '0.0.0.0') {
         }
     })
     server.on('connection', (socket) => {
+
+        rstream.on('command', (cmdMobileID, cmdMessage) => {
+            if (socket.mobileID === cmdMobileID) {
+                const sendSuccess = socket.write(cmdMessage)
+                g('Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
+            } else {
+                g(cmdMobileID, ' No encontrado, Falla al intentar enviar comando ', cmdMessage)
+            }
+        })
         socket.on('data', (rawData) => {
             const { mobileID } = parseData(rawData)
+            g(rawData.toString())
             if (mobileID) {
                 g(mobileID)
                 socket.write(mobileID)
