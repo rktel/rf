@@ -6,7 +6,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
-    const socketTimeout = 1000 * 10
+    const socketTimeout = 1000 * 30
     // Send mobiles to Web Client
     setInterval(() => {
         deliveryMobiles(Array.from(mobiles.keys()))
