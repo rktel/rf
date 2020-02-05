@@ -37,7 +37,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
         })
         socket.on('data', (rawData) => {
             const { mobileID } = parseData(rawData)
-            g(rawData.toString())
+            rawData.toString().includes('>RID') ? g(rawData.toString()) : false
             if (mobileID) {
                 g(mobileID)
                 socket.write(mobileID)
