@@ -11,7 +11,7 @@ const App = () => {
         })
     }, [])
     const sendCommand = (mobil) => {
-        rstream.emit('command', mobil, '>QID<')
+        rstream.emit('command', mobil, '>QVR<')
     }
     return (
         <div>

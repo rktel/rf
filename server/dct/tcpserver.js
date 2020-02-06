@@ -2,12 +2,12 @@ import g from '../../imports/tools/log'
 import { createServer } from 'net'
 import { rstream } from '../../imports/api/streamers'
 
-/*
+
 const servidor = createServer()
-servidor.on('connection', soq =>{
-    soq.writable
+servidor.on('connection', soq => {
+    soq.readable
 })
-*/createServer
+
 function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
@@ -38,9 +38,8 @@ function serverTCP(srv, port, host = '0.0.0.0') {
 
         rstream.on('command', (cmdMobileID, cmdMessage) => {
             if (socket.mobileID === cmdMobileID) {
-
                 const sendSuccess = socket.write(cmdMessage)
-                g('Writeable:', socket.writable, 'Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
+                g('Writable:', socket.writable, 'Readable:', socket.readable, 'Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
             }
         })
         socket.on('data', (rawData) => {
