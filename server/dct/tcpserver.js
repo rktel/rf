@@ -13,8 +13,8 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
-    const socketTimeout = 1000 * 180
-    const checkReadableWritableTimer = 1000 * 10
+    const socketTimeout = 1000 * 60 * 5
+    const checkReadableWritableTimer = 1000 * 60 * 1
     const CMD_INIT = '>QID<'
     // Send mobiles to Web Client
     setInterval(() => {
@@ -64,7 +64,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
             }
         })
         socket.on('timeout', () => {
-            g('socket timeout', socket.mobileID);
+            // g('socket timeout', socket.mobileID);
             socket.end();
             socket.destroy();
             mobiles.delete(socket.mobileID)
