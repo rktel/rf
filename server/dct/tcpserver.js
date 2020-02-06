@@ -6,7 +6,8 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
-    const socketTimeout = 1000 * 30
+    const socketTimeout = 1000 * 60
+    const CMD_INIT = '>QID<'
     // Send mobiles to Web Client
     setInterval(() => {
         deliveryMobiles(Array.from(mobiles.keys()))
@@ -44,6 +45,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
                 if (!socket['mobileID']) {
                     socket['mobileID'] = mobileID
                     mobiles.set(socket['mobileID'], mobileID)
+                    socket.write(CMD_INIT)
                 }
             }
         })
