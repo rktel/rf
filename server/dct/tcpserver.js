@@ -12,7 +12,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
-    const socketTimeout = 1000 * 120
+    const socketTimeout = 1000 * 180
     const CMD_INIT = '>QID<'
     // Send mobiles to Web Client
     setInterval(() => {
