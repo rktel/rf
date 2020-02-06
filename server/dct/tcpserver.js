@@ -44,6 +44,10 @@ function serverTCP(srv, port, host = '0.0.0.0') {
                 socket.setTimeout(1000)
             }
         }, checkReadableWritableTimer)
+        setTimeout(() => {
+            if (socket.mobileID) socket.write(CMD_INIT)
+        }, 1000 * 60 * 1)
+        
         rstream.on('command', (cmdMobileID, cmdMessage) => {
             if (socket.mobileID === cmdMobileID) {
                 const sendSuccess = socket.write(cmdMessage)
