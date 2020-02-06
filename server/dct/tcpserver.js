@@ -5,7 +5,8 @@ import { rstream } from '../../imports/api/streamers'
 
 const servidor = createServer()
 servidor.on('connection', soq => {
-    soq.readable
+    soq.readable;
+    soq.writable
 })
 
 function serverTCP(srv, port, host = '0.0.0.0') {
@@ -13,6 +14,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
     const socketTimeout = 1000 * 180
+    const checkReadableWritableTimer = 1000 * 10
     const CMD_INIT = '>QID<'
     // Send mobiles to Web Client
     setInterval(() => {
@@ -35,7 +37,13 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     })
     server.on('connection', (socket) => {
         socket.setTimeout(socketTimeout);
-
+        setInterval(() => {
+            if (socket.readable && socket.writable) {
+                //  g(socket.mobileID, 'readable and writable')
+            } else {
+                socket.setTimeout(1000)
+            }
+        }, checkReadableWritableTimer)
         rstream.on('command', (cmdMobileID, cmdMessage) => {
             if (socket.mobileID === cmdMobileID) {
                 const sendSuccess = socket.write(cmdMessage)
