@@ -2,11 +2,17 @@ import g from '../../imports/tools/log'
 import { createServer } from 'net'
 import { rstream } from '../../imports/api/streamers'
 
+/*
+const servidor = createServer()
+servidor.on('connection', soq =>{
+    soq.writable
+})
+*/createServer
 function serverTCP(srv, port, host = '0.0.0.0') {
     //variables and constants
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
-    const socketTimeout = 1000 * 60
+    const socketTimeout = 1000 * 120
     const CMD_INIT = '>QID<'
     // Send mobiles to Web Client
     setInterval(() => {
@@ -32,8 +38,9 @@ function serverTCP(srv, port, host = '0.0.0.0') {
 
         rstream.on('command', (cmdMobileID, cmdMessage) => {
             if (socket.mobileID === cmdMobileID) {
+
                 const sendSuccess = socket.write(cmdMessage)
-                g('Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
+                g('Writeable:', socket.writable, 'Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
             }
         })
         socket.on('data', (rawData) => {
