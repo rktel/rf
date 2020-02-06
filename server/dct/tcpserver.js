@@ -41,17 +41,21 @@ function serverTCP(srv, port, host = '0.0.0.0') {
             if (socket.readable && socket.writable) {
                 //  g(socket.mobileID, 'readable and writable')
             } else {
-                socket.setTimeout(1000)
+                socket.setTimeout(1000 * 60 * 1)
             }
         }, checkReadableWritableTimer)
         setTimeout(() => {
             if (socket.mobileID) socket.write(CMD_INIT)
         }, 1000 * 60 * 1)
-        
+
         rstream.on('command', (cmdMobileID, cmdMessage) => {
             if (socket.mobileID === cmdMobileID) {
                 const sendSuccess = socket.write(cmdMessage)
-                g('Writable:', socket.writable, 'Readable:', socket.readable, 'Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
+                if (sendSuccess) g(socket.mobileID, 'Mensaje ', cmdMessage, 'enviado con exito')
+                else {
+                    g(socket.mobileID, 'Falla al enviar mensaje')
+                }
+                //g('Writable:', socket.writable, 'Readable:', socket.readable, 'Envio de comando ', cmdMessage, 'de ', cmdMobileID, ':', sendSuccess)
             }
         })
         socket.on('data', (rawData) => {
