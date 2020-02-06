@@ -14,7 +14,7 @@ function serverTCP(srv, port, host = '0.0.0.0') {
     const mobiles = new Map()
     const toWebTimer = 1000 * 10
     const socketTimeout = 1000 * 60 * 5
-    const checkReadableWritableTimer = 1000 * 60 * 1
+    const checkReadableWritableTimer = 1000 * 60 * 2
     const CMD_INIT = '>QID<'
     // Send mobiles to Web Client
     setInterval(() => {
