@@ -7,8 +7,8 @@ const App = () => {
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
             g(mobileArray)
-            g('false',mobileArray.filter(el => el.readableWritable == true).length)
-            g('true', mobileArray.filter(el => el.readableWritable == false).length)
+            g('true',mobileArray.filter(el => el.readableWritable == true).length)
+            g('false', mobileArray.filter(el => el.readableWritable == false).length)
             setMobiles(mobileArray)
         })
     }, [])
