@@ -17,7 +17,7 @@ const App = () => {
         <div>
             Main App Pepa
             <ul>
-    {mobiles.map((mobil, index) => <li key={mobil}> {index} - {mobil} <button onClick={() => sendCommand(mobil)}>Send</button> </li>)}
+    {mobiles.map((mobil, index) => <li key={mobil.mobileID}> {index} - {mobil.mobileID} <button onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
             </ul>
         </div>
     )
