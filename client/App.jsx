@@ -5,13 +5,13 @@ import { rstream } from '../imports/api/streamers'
 const App = () => {
     const [mobiles, setMobiles] = useState([])
     useEffect(() => {
-        rstream.on('deliveryMobiles', (mobileArray) => {
+        rstream.on('getMobilesFromServer', (mobileArray) => {
             g(mobileArray)
             setMobiles(mobileArray)
         })
     }, [])
     const sendCommand = (mobil) => {
-        rstream.emit('command', mobil, '>QVR<')
+        rstream.emit('writeCommand', mobil, '>QVR<')
     }
     return (
         <div>
