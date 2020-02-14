@@ -88,7 +88,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
                     g('Socket', mobileIDFromClient, 'No readable/writable')
                 }
             } else {
-                g('MobileID', mobileIDFromClient, 'No registrado en server')
+               // g('MobileID', mobileIDFromClient, 'No registrado en server')
             }
         })
         // SOCKET ON DATA
