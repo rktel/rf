@@ -3,21 +3,14 @@ import React, { useState, useEffect } from 'react'
 import { rstream } from '../imports/api/streamers'
 
 const App = () => {
-
-
-
     const [mobiles, setMobiles] = useState([])
     const [countdown, setCountdown] = useState('')
-
-
-
-
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
             setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
-            setCountdown(new Date(countdown_).addHours(-5).toISOString())
+            setCountdown(new Date(countdown_).addHours(-5).toISOString().split('T')[1])
         })
     }, [])
     const sendCommand = (mobil) => {
@@ -25,11 +18,11 @@ const App = () => {
     }
     return (
         <div>
-            Main App Pepa
             <h4>Countdown Time {countdown} </h4>
-            <ul>
-                {mobiles.map((mobil, index) => <li key={mobil.mobileID}> {index} - {mobil.mobileID} - {mobil.readableWritable.toString()}<button onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
-            </ul>
+
+            {mobiles.map((mobil, index) => 
+            <li key={mobil.mobileID}> {index + 1} - {mobil.mobileID}<button className="pure-button" onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
+
         </div>
     )
 }
