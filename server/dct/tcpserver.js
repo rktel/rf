@@ -13,10 +13,11 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     const TIMER_SEND_COMMAND_INIT = 1000 * 60 // 60 seconds
     const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 1 // 1 seconds
     const COMMAND_INIT_TO_MOBILE = '>QID<'
-
+    const COUNTDOWN_TIME = new Date().addMinutes(20)
     // ACTION FUNCTIONS
     function sendMobilesToClient(mobilesArray) {
         rstream.emit('getMobilesFromServer', mobilesArray)
+        rstream.emit('countdown', COUNTDOWN_TIME)
     }
     // SEND MOBILES TO CLIENT
     setInterval(__ => sendMobilesToClient(Array.from(mobilesArray.values())), TIMER_SEND_MOBILES_TO_CLIENT)
@@ -25,7 +26,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // SERVER LISTEN
     server.listen(portServer, hostServer, u => {
         g('Server TCP UP')
-        rstream.emit('countdown', (new Date()).addMinutes(20))
+        rstream.emit('countdown', COUNTDOWN_TIME)
     })
     // ON CLOSE SERVER
     server.on('close', __ => g('Server TCP Close'))
