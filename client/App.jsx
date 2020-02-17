@@ -20,7 +20,7 @@ const App = () => {
             setCountdown(countdown_.toISOString())
             //******************* */
 
-            var countDownDate = new Date(countdown).getTime();
+            var countDownDate = countdown.getTime();
 
             // Update the count down every 1 second
             var x = setInterval(function () {
