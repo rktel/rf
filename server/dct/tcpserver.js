@@ -68,16 +68,13 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
         // STREAMER WRITE COMMAND FROM CLIENT
         rstream.on('writeCommand', (mobileIDFromClient, messageFromClient) => {
             if (socket.mobileID === mobileIDFromClient) {
-                if (socket.readable && socket.writable) {
-                    const writeCommandSuccess = socket.write(messageFromClient)
-                    if (writeCommandSuccess) {
-                        g(socket.mobileID, 'Mensaje ', messageFromClient, 'enviado!')
-                    } else {
-                        g(socket.mobileID, ' Error al enviar mensaje ', messageFromClient)
-                    }
+                const writeCommandSuccess = socket.write(messageFromClient)
+                if (writeCommandSuccess) {
+                    g(socket.mobileID, 'Mensaje ', messageFromClient, 'enviado!')
                 } else {
-                    g('Socket', mobileIDFromClient, 'No readable/writable')
+                    g(socket.mobileID, ' Error al enviar mensaje ', messageFromClient)
                 }
+
             } else {
                 // g('MobileID', mobileIDFromClient, 'No registrado en server')
             }
