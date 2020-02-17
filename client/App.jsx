@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { rstream } from '../imports/api/streamers'
 
 const App = () => {
+
     const [mobiles, setMobiles] = useState([])
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
@@ -18,6 +19,8 @@ const App = () => {
     return (
         <div>
             Main App Pepa
+            <h4>Countdown Timer</h4>
+            <h6></h6>
             <ul>
     {mobiles.map((mobil, index) => <li key={mobil.mobileID}> {index} - {mobil.mobileID} - {mobil.readableWritable.toString()}<button onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
             </ul>
@@ -26,3 +29,4 @@ const App = () => {
 }
 
 export default App
+

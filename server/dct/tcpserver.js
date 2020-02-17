@@ -23,7 +23,9 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // SERVER NET
     const server = srv()
     // SERVER LISTEN
-    server.listen(portServer, hostServer)
+    server.listen(portServer, hostServer, u=>{
+        g('Sever TCP UP')
+    })
     // ON CLOSE SERVER
     server.on('close', __ => g('Server TCP Close'))
     //ON ERROR SERVER
