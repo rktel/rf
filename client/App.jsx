@@ -19,9 +19,25 @@ const App = () => {
     return (
         <div>
             <h4>Countdown Time {countdown} </h4>
+            <table class="pure-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>IMEI</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-            {mobiles.map((mobil, index) => 
-            <li key={mobil.mobileID}> {index + 1} - {mobil.mobileID}<button className="pure-button" onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
+                <tbody>
+                    {mobiles.map((mobil, index) =>
+                        <tr key={mobil.mobileID}>
+                            <td>{index + 1} </td>
+                            <td>{mobil.mobileID}</td>
+                            <td><button className="pure-button button-xsmall" onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
+                        </tr>)}
+                </tbody>
+            </table>
+
 
         </div>
     )
