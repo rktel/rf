@@ -26,7 +26,7 @@ const App = () => {
     return (
         <div>
             Main App Pepa
-            <h4>Countdown Time {countdown} - {countdownTimer}</h4>
+            <h4>Countdown Time {countdown} </h4>
             <ul>
                 {mobiles.map((mobil, index) => <li key={mobil.mobileID}> {index} - {mobil.mobileID} - {mobil.readableWritable.toString()}<button onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
             </ul>
