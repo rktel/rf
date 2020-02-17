@@ -5,7 +5,7 @@ import { rstream } from '../../imports/api/streamers'
 
 function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // VARIABLES
-    const mobilesArray = new Map()
+    let mobilesArray = new Map()
     const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10  // 10 seconds
     const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2  // 120 seconds
     const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 1 // 1 seconds
