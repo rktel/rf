@@ -18,27 +18,31 @@ const App = () => {
     }
     return (
         <div>
-            <h4>Countdown Time {countdown} </h4>
-            <table className="pure-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>IMEI</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+            <div className="pure-g">
+                <div className="pure-u-1 pure-u-md-1-3">
+                    <h4>Countdown Time {countdown} </h4>
+                    <table className="pure-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>IMEI</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    {mobiles.map((mobil, index) =>
-                        <tr key={mobil.mobileID}>
-                            <td>{index + 1} </td>
-                            <td>{mobil.mobileID}</td>
-                            <td><button className="pure-button button-xsmall" onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
-                        </tr>)}
-                </tbody>
-            </table>
-
-                        <br/>
+                        <tbody>
+                            {mobiles.map((mobil, index) =>
+                                <tr key={mobil.mobileID}>
+                                    <td>{index + 1} </td>
+                                    <td>{mobil.mobileID}</td>
+                                    <td><button className="pure-button button-xsmall" onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
+                                </tr>)}
+                        </tbody>
+                    </table>
+                    <br />
+                </div>
+                <div className="pure-u-1 pure-u-md-2-3"> </div>
+            </div>
         </div>
     )
 }
