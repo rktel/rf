@@ -5,7 +5,7 @@ import { rstream } from '../../imports/api/streamers'
 
 function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // VARIABLES
-    let mobilesArray = new Map()
+    const mobilesArray = new Map()
     const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10  // 10 seconds
     const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2  // 120 seconds
     const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 1 // 1 seconds
@@ -13,19 +13,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     const TIMER_SEND_COMMAND_INIT = 1000 * 60 // 60 seconds
     const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 1 // 1 seconds
     const COMMAND_INIT_TO_MOBILE = '>QID<'
-    // PARSER FUNCTION
-    function parseData(data) {
-        let unit = data.toString()
-        if (unit.includes('ID=')) {
-            unit = unit.split('\r\n')[0]
-            unit = unit.split(';')[unit.split(';').length - 1]
-            unit = unit.includes('ID=') ? unit.match(/(\d+)/)[0] : undefined
-            return {
-                mobileID: unit
-            }
-        }
-        return false
-    }
+
     // ACTION FUNCTIONS
     function sendMobilesToClient(mobilesArray) {
         rstream.emit('getMobilesFromServer', mobilesArray)
@@ -141,5 +129,18 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     })
 
 }
-
+    // PARSER FUNCTION
+    function parseData(data) {
+        let unit = data.toString()
+        if (unit.includes('ID=')) {
+            unit = unit.split('\r\n')[0]
+            unit = unit.split(';')[unit.split(';').length - 1]
+            unit = unit.includes('ID=') ? unit.match(/(\d+)/)[0] : undefined
+            return {
+                mobileID: unit
+            }
+        }
+        return false
+    }
+// Server instance
 serverNET(createServer, 7100)
