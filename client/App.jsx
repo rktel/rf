@@ -12,7 +12,7 @@ const App = () => {
         })
         rstream.on('countdown', countdown_ => {
          //   setCountdown(countdown_)
-         g(countdown_)
+         g(countdown_.toISOString())
         })
     }, [])
     const sendCommand = (mobil) => {
