@@ -7,11 +7,11 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // VARIABLES
     let mobilesArray = new Map()
     const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10  // 10 seconds
-    const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 5  // 300 seconds
-    const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 60 * 2 // 120 seconds
+    const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2  // 120 seconds
+    const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 5 // 5 seconds
     const TIMER_SERVER_RESTART_INTENT = 1000 * 2 // 2 seconds
     const TIMER_SEND_COMMAND_INIT = 1000 * 60 // 60 seconds
-    const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 90 // 90 seconds
+    const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 4 // 4 seconds
     const COMMAND_INIT_TO_MOBILE = '>QID<'
     // PARSER FUNCTION
     function parseData(data) {
@@ -69,9 +69,8 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
                         return auxiliarContainer
                     }
                     mobilesArray = setMobileToMobilesArray(socket, mobilesArray)
+                    socket.setTimeout(TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK)
                 }
-                socket.setTimeout(TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK)
-
             }
         }, TIMER_CHECK_READABLE_WRITABLE_SOCKET)
         // STREAMER WRITE COMMAND FROM CLIENT
@@ -88,7 +87,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
                     g('Socket', mobileIDFromClient, 'No readable/writable')
                 }
             } else {
-               // g('MobileID', mobileIDFromClient, 'No registrado en server')
+                // g('MobileID', mobileIDFromClient, 'No registrado en server')
             }
         })
         // SOCKET ON DATA
@@ -129,9 +128,9 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
         })
         // SOCKET ON TIMEOUT
         socket.on('timeout', __ => {
-            // g('socket timeout', socket.mobileID);
-            socket.end();
-            socket.destroy();
+            g('socket timeout', socket.mobileID);
+            // socket.end();
+            // socket.destroy();
         });
         // SOCKET ON CLOSE
         socket.on('close', hadError => g('socket:close:', socket.mobileID, 'Error Tx:', hadError))
