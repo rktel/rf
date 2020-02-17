@@ -19,7 +19,7 @@ const App = () => {
     return (
         <div>
             <h4>Countdown Time {countdown} </h4>
-            <table class="pure-table">
+            <table className="pure-table">
                 <thead>
                     <tr>
                         <th>#</th>
