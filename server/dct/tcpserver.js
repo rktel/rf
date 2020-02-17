@@ -128,7 +128,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
         })
         // SOCKET ON TIMEOUT
         socket.on('timeout', __ => {
-            g('socket timeout', socket.mobileID);
+            //g('socket timeout', socket.mobileID);
             // socket.end();
             // socket.destroy();
         });
