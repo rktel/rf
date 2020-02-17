@@ -8,10 +8,10 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     let mobilesArray = new Map()
     const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10  // 10 seconds
     const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2  // 120 seconds
-    const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 5 // 5 seconds
+    const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 1 // 1 seconds
     const TIMER_SERVER_RESTART_INTENT = 1000 * 2 // 2 seconds
     const TIMER_SEND_COMMAND_INIT = 1000 * 60 // 60 seconds
-    const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 4 // 4 seconds
+    const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 1 // 1 seconds
     const COMMAND_INIT_TO_MOBILE = '>QID<'
     // PARSER FUNCTION
     function parseData(data) {
@@ -34,9 +34,6 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     setInterval(__ => sendMobilesToClient(Array.from(mobilesArray.values())), TIMER_SEND_MOBILES_TO_CLIENT)
     // SERVER NET
     const server = srv()
-    setTimeout(u=>{
-        g('server.unref()', server.unref())
-    }, 1000 * 10)
     // SERVER LISTEN
     server.listen(portServer, hostServer)
     // ON CLOSE SERVER
