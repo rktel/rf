@@ -34,6 +34,9 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     setInterval(__ => sendMobilesToClient(Array.from(mobilesArray.values())), TIMER_SEND_MOBILES_TO_CLIENT)
     // SERVER NET
     const server = srv()
+    setTimeout(u=>{
+        g('server.unref()', server.unref())
+    }, 1000 * 10)
     // SERVER LISTEN
     server.listen(portServer, hostServer)
     // ON CLOSE SERVER
