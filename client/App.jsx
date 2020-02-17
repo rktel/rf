@@ -41,7 +41,7 @@ const App = () => {
                     </table>
                     <br />
                 </div>
-                <div className="pure-u-1 pure-u-md-2-3"> </div>
+                <div className="pure-u-1 pure-u-md-2-3"> PEpa </div>
             </div>
         </div>
     )
