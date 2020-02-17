@@ -11,8 +11,7 @@ const App = () => {
             setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
-         //   setCountdown(countdown_)
-         g(countdown_.toISOString())
+            setCountdown(countdown_.toISOString())
         })
     }, [])
     const sendCommand = (mobil) => {
