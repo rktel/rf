@@ -5,12 +5,13 @@ import { rstream } from '../imports/api/streamers'
 const App = () => {
 
     const [mobiles, setMobiles] = useState([])
+    const [countdown, setCountdown] = useState('')
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
-            g(mobileArray)
-            g('true',mobileArray.filter(el => el.readableWritable == true).length)
-            g('false', mobileArray.filter(el => el.readableWritable == false).length)
             setMobiles(mobileArray)
+        })
+        rstream.on('countdown', countdown_ => {
+            setCountdown(countdown_)
         })
     }, [])
     const sendCommand = (mobil) => {
@@ -19,10 +20,9 @@ const App = () => {
     return (
         <div>
             Main App Pepa
-            <h4>Countdown Timer</h4>
-            <h6></h6>
+            <h4>Countdown Time {countdown}</h4>
             <ul>
-    {mobiles.map((mobil, index) => <li key={mobil.mobileID}> {index} - {mobil.mobileID} - {mobil.readableWritable.toString()}<button onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
+                {mobiles.map((mobil, index) => <li key={mobil.mobileID}> {index} - {mobil.mobileID} - {mobil.readableWritable.toString()}<button onClick={() => sendCommand(mobil.mobileID)}>Send</button> </li>)}
             </ul>
         </div>
     )

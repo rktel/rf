@@ -23,8 +23,9 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // SERVER NET
     const server = srv()
     // SERVER LISTEN
-    server.listen(portServer, hostServer, u=>{
-        g('Sever TCP UP')
+    server.listen(portServer, hostServer, u => {
+        g('Server TCP UP')
+        rstream.emit('countdown', (new Date()).addMinutes(20))
     })
     // ON CLOSE SERVER
     server.on('close', __ => g('Server TCP Close'))
@@ -131,18 +132,24 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     })
 
 }
-    // PARSER FUNCTION
-    function parseData(data) {
-        let unit = data.toString()
-        if (unit.includes('ID=')) {
-            unit = unit.split('\r\n')[0]
-            unit = unit.split(';')[unit.split(';').length - 1]
-            unit = unit.includes('ID=') ? unit.match(/(\d+)/)[0] : undefined
-            return {
-                mobileID: unit
-            }
+// PARSER FUNCTION
+function parseData(data) {
+    let unit = data.toString()
+    if (unit.includes('ID=')) {
+        unit = unit.split('\r\n')[0]
+        unit = unit.split(';')[unit.split(';').length - 1]
+        unit = unit.includes('ID=') ? unit.match(/(\d+)/)[0] : undefined
+        return {
+            mobileID: unit
         }
-        return false
     }
+    return false
+}
+// Support Functions
+Date.prototype.addMinutes = function (m) {
+    this.setTime(this.getTime() + (m * 60 * 1000));
+    return this;
+}
+
 // Server instance
 serverNET(createServer, 7100)
