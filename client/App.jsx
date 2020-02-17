@@ -17,7 +17,7 @@ const App = () => {
             setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
-            setCountdown(new Date(countdown_).addHours(-5))
+            setCountdown(new Date(countdown_).addHours(-5).toISOString())
         })
     }, [])
     const sendCommand = (mobil) => {
