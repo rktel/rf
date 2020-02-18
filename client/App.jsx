@@ -17,9 +17,9 @@ const App = () => {
         rstream.emit('writeCommand', mobil, '>QVR<')
     }
     return (
-        <div>
+        <div style={{'height':'100vh'}}>
             <div className="pure-g">
-                <div className="pure-u-1-3">
+                <div className="pure-u-1-3" style={{'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
                     <table className="pure-table">
                         <thead>
