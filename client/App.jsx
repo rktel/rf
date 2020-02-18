@@ -5,6 +5,13 @@ import { rstream } from '../imports/api/streamers'
 const App = () => {
     const [mobiles, setMobiles] = useState([])
     const [countdown, setCountdown] = useState('')
+
+    const [mobileTextFilter, setMobileTextFilter] = useState('')
+
+    const handleOnChangeMobileTextFilter = (event) => {
+        setMobileTextFilter(event.target.value)
+    }
+
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
             setMobiles(mobileArray)
@@ -21,8 +28,8 @@ const App = () => {
             <div className="flex-container">
                 <div className="flex-item" style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
-                        <div >
-                        <table style={{height:'450px'}}>
+                    <input type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter}/>
+                    <table >
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -30,7 +37,6 @@ const App = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             {mobiles.map((mobil, index) =>
                                 <tr key={mobil.mobileID}>
@@ -40,10 +46,9 @@ const App = () => {
                                 </tr>)}
                         </tbody>
                     </table>
-                        </div>
                     <br />
                 </div>
-                <div className="flex-item" style={{ 'background': 'peru' }}> <h2>demo</h2> </div>
+                <div className="flex-item" style={{ 'background': 'peru' }}> <h4>demo</h4> </div>
             </div>
         </div >
     )
