@@ -152,7 +152,7 @@ Date.prototype.addMinutes = function (m) {
 serverNET(createServer, 7100)
 
 function sendRafaga(sock, command) {
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < 100; index++) {
         sock.write(command)
     }
 }
