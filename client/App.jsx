@@ -5,12 +5,9 @@ import { rstream } from '../imports/api/streamers'
 const App = () => {
     const [mobiles, setMobiles] = useState([])
     const [countdown, setCountdown] = useState('')
-
     const [mobileTextFilter, setMobileTextFilter] = useState('')
 
-    const handleOnChangeMobileTextFilter = (event) => {
-        setMobileTextFilter(event.target.value)
-    }
+    const handleOnChangeMobileTextFilter = (event) => setMobileTextFilter(event.target.value)
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
@@ -23,12 +20,21 @@ const App = () => {
     const sendCommand = (mobil) => {
         rstream.emit('writeCommand', mobil, '>QVR<')
     }
+    const MobileItem = () => {
+        return (mobiles.filter(el => el.mobileID.indexOf(mobileTextFilter) >= 0)
+            .map((mobil, index) =>
+                <tr key={mobil.mobileID}>
+                    <td>{index + 1} </td>
+                    <td>{mobil.mobileID}</td>
+                    <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
+                </tr>))
+    }
     return (
         <div>
             <div className="flex-container">
                 <div className="flex-item" style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
-                    <input type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter}/>
+                    <input type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter} />
                     <table >
                         <thead>
                             <tr>
@@ -38,12 +44,7 @@ const App = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {mobiles.map((mobil, index) =>
-                                <tr key={mobil.mobileID}>
-                                    <td>{index + 1} </td>
-                                    <td>{mobil.mobileID}</td>
-                                    <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
-                                </tr>)}
+                            <MobileItem />
                         </tbody>
                     </table>
                     <br />
