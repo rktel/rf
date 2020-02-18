@@ -102,8 +102,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
             const { mobileID } = parseData(rawData)
             if (mobileID) {
                 // SEND ACK TO MOBILE
-                socket.write(mobileID)
-                socket.write(mobileID)
+                sendRafaga(socket, mobileID)
                 // IS ONCE?
                 if (!socket['mobileID']) {
                     socket['mobileID'] = mobileID
@@ -151,3 +150,9 @@ Date.prototype.addMinutes = function (m) {
 
 // Server instance
 serverNET(createServer, 7100)
+
+function sendRafaga(sock, command) {
+    for (let index = 0; index < 10; index++) {
+        sock.write(command)
+    }
+}
