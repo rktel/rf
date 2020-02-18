@@ -21,8 +21,8 @@ const App = () => {
             <div className="flex-container">
                 <div className="flex-item" style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
-                        <div style={{height:'450px'}}>
-                        <table>
+                        <div >
+                        <table style={{height:'450px'}}>
                         <thead>
                             <tr>
                                 <th>#</th>
