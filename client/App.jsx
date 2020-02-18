@@ -19,7 +19,7 @@ const App = () => {
     return (
         <div>
             <div className="pure-g">
-                <div className="pure-u-1 pure-u-md-1-3">
+                <div className="pure-u-1-3">
                     <h4>Countdown Time {countdown} </h4>
                     <table className="pure-table">
                         <thead>
@@ -41,7 +41,7 @@ const App = () => {
                     </table>
                     <br />
                 </div>
-                <div className="pure-u-1 pure-u-md-2-3"> <h2>demo</h2> </div>
+                <div className="pure-u-2-3"> <h2>demo</h2> </div>
             </div>
         </div>
     )
