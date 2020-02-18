@@ -18,8 +18,8 @@ const App = () => {
     }
     return (
         <div>
-            <div>
-                <div style={{ 'background': 'gray' }}>
+            <div className="flex-container">
+                <div className="flex-item" style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
                     <table>
                         <thead>
@@ -41,7 +41,7 @@ const App = () => {
                     </table>
                     <br />
                 </div>
-                <div style={{'background': 'peru'}}> <h2>demo</h2> </div>
+                <div className="flex-item" style={{ 'background': 'peru' }}> <h2>demo</h2> </div>
             </div>
         </div >
     )
