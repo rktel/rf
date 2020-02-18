@@ -18,10 +18,10 @@ const App = () => {
     }
     return (
         <div>
-            <div className="pure-g">
-                <div className="pure-u-1-3" style={{ 'background': 'gray' }}>
+            <div>
+                <div style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
-                    <table className="pure-table" style={{ 'height': '500px !important' }}>
+                    <table>
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -35,13 +35,13 @@ const App = () => {
                                 <tr key={mobil.mobileID}>
                                     <td>{index + 1} </td>
                                     <td>{mobil.mobileID}</td>
-                                    <td><button className="pure-button button-xsmall" onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
+                                    <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
                                 </tr>)}
                         </tbody>
                     </table>
                     <br />
                 </div>
-                <div className="pure-u-2-3" style={{ 'background': 'peru' }}> <h2>demo</h2> </div>
+                <div style={{'background': 'peru'}}> <h2>demo</h2> </div>
             </div>
         </div >
     )
