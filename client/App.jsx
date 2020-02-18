@@ -25,7 +25,7 @@ const App = () => {
             .map((mobil, index) =>
                 <tr key={mobil.mobileID}>
                     <td>{index + 1} </td>
-                    <td>{mobil.mobileID}</td>
+                    <td><input type="checkbox" name={mobil.mobileID} id={mobil.mobileID} value={mobil.mobileID}/> <label for={mobil.mobileID}>{mobil.mobileID}</label></td>
                     <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
                 </tr>))
     }
@@ -34,7 +34,7 @@ const App = () => {
             <div className="flex-container">
                 <div className="flex-item" style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
-                    <input type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter} />
+                    <input placeholder="Buscar IMEI" type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter} />
                     <table >
                         <thead>
                             <tr>
