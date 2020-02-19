@@ -15,17 +15,6 @@ const App = () => {
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
             useMobilesRef.current = mobileArray
-            g('llega', mobileArray)
-            g('hay', mobiles)
-            g('useMobilesRef.current',useMobilesRef.current)
-
-            /*
-            if(JSON.stringify(mobileArray) == JSON.stringify(mobiles)){
-                g('Son iguales')
-            }else{
-                g('Son diferentes')
-            }
-            */
            setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
@@ -45,6 +34,8 @@ const App = () => {
                     <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
                 </tr>))
     }
+    g('useMobilesRef.current',useMobilesRef.current)
+    g('mobiles',mobiles)
     return (
         <div>
             <div className="flex-container">
