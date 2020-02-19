@@ -21,8 +21,8 @@ const App = () => {
     }
     const handleOnChangeMessageText = (event) => setMessageText(event.target.value)
     const handleOnClickSendButton = () => {
-        mobilesSelected.map(mobil => {
-           // rstream.emit('writeCommand', mobil, messageText)
+        mobilesSelected.forEach(mobil => {
+           rstream.emit('writeCommand', mobil, messageText)
         })
     }
     const handleOnClickCleanMessageButton = () => setMessageText('')
