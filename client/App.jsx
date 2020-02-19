@@ -100,8 +100,8 @@ const App = () => {
                 <div className="flex-item" style={{ 'background': 'cornflowerblue' }}>
                     <h4>Main Action</h4>
 
-                    <button onClick={u => setActionType('message')}>MESSAGE</button>
-                    <button onClick={u => setActionType('script')}>SCRIPT</button>
+                    <button onClick={setActionType('message')}>MESSAGE</button>
+                    <button onClick={setActionType('script')}>SCRIPT</button>
 
                     <h4>Selection</h4>
                     <table >
