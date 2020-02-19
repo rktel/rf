@@ -8,6 +8,7 @@ const App = () => {
     const [mobileTextFilter, setMobileTextFilter] = useState('')
 
     const handleOnChangeMobileTextFilter = (event) => setMobileTextFilter(event.target.value)
+    const handleOnClickCleanButton = () => setMobileTextFilter('')
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
@@ -25,7 +26,7 @@ const App = () => {
             .map((mobil, index) =>
                 <tr key={mobil.mobileID}>
                     <td>{index + 1} </td>
-                    <td><label><input type="checkbox" name={mobil.mobileID} id={mobil.mobileID} value={mobil.mobileID}/>{mobil.mobileID}</label></td>
+                    <td><label><input type="checkbox" name={mobil.mobileID} id={mobil.mobileID} value={mobil.mobileID} />{mobil.mobileID}</label></td>
                     <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
                 </tr>))
     }
@@ -35,6 +36,7 @@ const App = () => {
                 <div className="flex-item" style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
                     <input placeholder="Buscar IMEI" type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter} />
+                    <button onClick={handleOnClickCleanButton}>CLEAN</button>
                     <table >
                         <thead>
                             <tr>
