@@ -60,6 +60,7 @@ const App = () => {
                             <tr>
                                 <th>#</th>
                                 <th>IMEI</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,7 +69,7 @@ const App = () => {
                     </table>
                     <br />
                 </div>
-                <div className="flex-item" style={{ 'background': 'blue' }}>
+                <div className="flex-item" style={{ 'background': 'cornflowerblue' }}>
                     <h4>Selected</h4>
                     <table >
                         <thead>
