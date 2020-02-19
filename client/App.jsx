@@ -1,5 +1,5 @@
 import g from '../imports/tools/log'
-import React, { useState, useEffect , useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { rstream } from '../imports/api/streamers'
 
 const App = () => {
@@ -7,15 +7,21 @@ const App = () => {
     const [countdown, setCountdown] = useState('')
     const [mobileTextFilter, setMobileTextFilter] = useState('')
 
+    const [mobilesSelected, setMobilesSelected] = useState([])
+
     const handleOnChangeMobileTextFilter = (event) => setMobileTextFilter(event.target.value)
     const handleOnClickCleanButton = () => setMobileTextFilter('')
-
-    const useMobilesRef = useRef()
+    const handleOnClickAddButton = (mobil) => {
+        if (mobilesSelected.indexOf(mobil) < 0) {
+            setMobilesSelected([...mobilesSelected, mobil])
+        } else {
+            setMobilesSelected(mobilesSelected.filter(el => el != mobil))
+        }
+    }
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
-            useMobilesRef.current = mobileArray
-           setMobiles(mobileArray)
+            setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
             setCountdown(new Date(countdown_).addHours(-5).toISOString().split('T')[1])
@@ -25,17 +31,23 @@ const App = () => {
     const sendCommand = (mobil) => {
         rstream.emit('writeCommand', mobil, '>QVR<')
     }
-    const MobileItem = () => {
+    const MobilesItems = () => {
         return (mobiles.filter(el => el.mobileID.indexOf(mobileTextFilter) >= 0)
             .map((mobil, index) =>
                 <tr key={mobil.mobileID}>
                     <td>{index + 1} </td>
                     <td><label><input type="checkbox" name={mobil.mobileID} id={mobil.mobileID} value={mobil.mobileID} />{mobil.mobileID}</label></td>
                     <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
+                    <td><button onClick={() => handleOnClickAddButton(mobil.mobileID)}>Add</button></td>
                 </tr>))
     }
-    g('useMobilesRef.current',useMobilesRef.current)
-    g('mobiles',mobiles)
+    const MobileSelectedItems = () => {
+        return (mobilesSelected.map((mobil, index) =>
+            <li key={index}>
+                {index + 1} - {mobil}
+            </li>
+        ))
+    }
     return (
         <div>
             <div className="flex-container">
@@ -52,10 +64,14 @@ const App = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <MobileItem />
+                            <MobilesItems />
                         </tbody>
                     </table>
                     <br />
+                </div>
+                <div className="flex-item" style={{ 'background': 'blue' }}>
+                    <h4>Selected</h4>
+                    <MobileSelectedItems />
                 </div>
                 <div className="flex-item" style={{ 'background': 'peru' }}> <h4>demo</h4> </div>
             </div>
