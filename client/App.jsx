@@ -45,6 +45,7 @@ const App = () => {
             <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{mobil}</td>
+                <td><button onClick={() => handleOnClickAddButton(mobil)}>DEL</button></td>
             </tr>
         ))
     }
@@ -95,6 +96,7 @@ const App = () => {
                             <tr>
                                 <th>#</th>
                                 <th>IMEI</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
