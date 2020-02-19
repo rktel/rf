@@ -10,7 +10,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2
     const TIMER_SERVER_RESTART_INTENT = 1000 * 2
     const KEEP_ALIVE_SOCKET = 1000 * 30
-    const COUNTDOWN_TIME = new Date().addMinutes(60 * 6) // 6 horas
+    const COUNTDOWN_TIME = new Date().addMinutes(20) // 20 min
     // ACTION FUNCTIONS
     function sendMobilesToClient(mobilesArray) {
         rstream.emit('getMobilesFromServer', mobilesArray)

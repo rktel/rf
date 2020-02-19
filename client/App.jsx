@@ -63,7 +63,7 @@ const App = () => {
         return (
             <div>
                 <h3>Message</h3>
-                <input placeholder="Message" type="text" onChange={handleOnChangeMessageText} value={messageText} />
+                <input placeholder="Message" type="text" id="messageText" onChange={handleOnChangeMessageText} value={messageText} />
                 <button onClick={handleOnClickCleanMessageButton}>CLEAN</button>
                 <button onClick={handleOnClickSendButton}>SEND</button>
             </div>
@@ -81,7 +81,7 @@ const App = () => {
             <div className="flex-container">
                 <div className="flex-item" style={{ 'background': 'gray' }}>
                     <h4>Countdown Time {countdown} </h4>
-                    <input placeholder="Buscar IMEI" type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter} />
+                    <input placeholder="Buscar IMEI" id="mobileTextFilter" type="text" onChange={handleOnChangeMobileTextFilter} value={mobileTextFilter} />
                     <button onClick={handleOnClickCleanButton}>CLEAN</button>
                     <table >
                         <thead>
