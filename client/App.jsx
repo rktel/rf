@@ -6,8 +6,8 @@ const App = () => {
     const [mobiles, setMobiles] = useState([])
     const [countdown, setCountdown] = useState('')
     const [mobileTextFilter, setMobileTextFilter] = useState('')
-
     const [mobilesSelected, setMobilesSelected] = useState([])
+    const [actionType, setActionType] = useState(undefined)
 
     const handleOnChangeMobileTextFilter = (event) => setMobileTextFilter(event.target.value)
     const handleOnClickCleanButton = () => setMobileTextFilter('')
@@ -37,7 +37,7 @@ const App = () => {
                 <tr key={mobil.mobileID}>
                     <td>{index + 1} </td>
                     <td>{mobil.mobileID}</td>
-                    <td><button onClick={() => handleOnClickAddButton(mobil.mobileID)}>Add</button></td>
+                    <td><button onClick={() => handleOnClickAddButton(mobil.mobileID)}>ADD</button></td>
                 </tr>))
     }
     const MobileSelectedItems = () => {
@@ -47,6 +47,20 @@ const App = () => {
                 <td>{mobil}</td>
             </tr>
         ))
+    }
+    const MessageDrywall = () => {
+        return (
+            <div>
+                <h1>MessageDrywall</h1>
+            </div>
+        )
+    }
+    const ScriptDrywall = () => {
+        return (
+            <div>
+                <h1>ScriptDrywall</h1>
+            </div>
+        )
     }
     return (
         <div>
@@ -70,7 +84,12 @@ const App = () => {
                     <br />
                 </div>
                 <div className="flex-item" style={{ 'background': 'cornflowerblue' }}>
-                    <h4>Selected</h4>
+                    <h4>Action</h4>
+
+                    <button onClick={u => setActionType('message')}>MESSAGE</button>
+                    <button onClick={u => setActionType('script')}>SCRIPT</button>
+
+                    <h4>Selection</h4>
                     <table >
                         <thead>
                             <tr>
@@ -85,7 +104,9 @@ const App = () => {
                     <br />
 
                 </div>
-                <div className="flex-item" style={{ 'background': 'peru' }}> <h4>demo</h4> </div>
+                <div className="flex-item" style={{ 'background': 'goldenrod' }}>
+                    {actionType == 'message' ? <MessageDrywall /> : <ScriptDrywall />}
+                </div>
             </div>
         </div >
     )
