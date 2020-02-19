@@ -1,5 +1,5 @@
 import g from '../imports/tools/log'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { rstream } from '../imports/api/streamers'
 
 const App = () => {
@@ -10,18 +10,22 @@ const App = () => {
     const handleOnChangeMobileTextFilter = (event) => setMobileTextFilter(event.target.value)
     const handleOnClickCleanButton = () => setMobileTextFilter('')
 
-    const prevMobilesRef = useRef()
+
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
-            prevMobilesRef.current = mobileArray;
+            if(JSON.stringify(mobileArray) == JSON.stringify(mobiles)){
+                g('Son iguales')
+            }else{
+                g('Son diferentes')
+            }
             setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
             setCountdown(new Date(countdown_).addHours(-5).toISOString().split('T')[1])
         })
     }, [])
-    g('previuos prevMobilesRef.current', prevMobilesRef.current)
+
     const sendCommand = (mobil) => {
         rstream.emit('writeCommand', mobil, '>QVR<')
     }
