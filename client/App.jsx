@@ -14,9 +14,10 @@ const App = () => {
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
-
+            useMobilesRef.current = mobileArray
             g('llega', mobileArray)
             g('hay', mobiles)
+            g('useMobilesRef.current',useMobilesRef.current)
 
             /*
             if(JSON.stringify(mobileArray) == JSON.stringify(mobiles)){
