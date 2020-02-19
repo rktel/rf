@@ -105,7 +105,8 @@ const App = () => {
 
                 </div>
                 <div className="flex-item" style={{ 'background': 'goldenrod' }}>
-                    {actionType == 'message' ? <MessageDrywall /> : <ScriptDrywall />}
+                    {actionType == 'message' ? <MessageDrywall /> : null}
+                    {actionType == 'script' ? <ScriptDrywall /> : null}
                 </div>
             </div>
         </div >
