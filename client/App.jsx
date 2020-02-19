@@ -14,12 +14,12 @@ const App = () => {
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
+            setMobiles(mobileArray)
             if(JSON.stringify(mobileArray) == JSON.stringify(mobiles)){
                 g('Son iguales')
             }else{
                 g('Son diferentes')
             }
-            setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
             setCountdown(new Date(countdown_).addHours(-5).toISOString().split('T')[1])
