@@ -61,9 +61,8 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
         // SOCKET ON DATA
         socket.on('data', rawData => {
 
-            rawData.toString().includes('>RVR') ? g(rawData.toString()) : false
-            rawData.toString().includes('>RID') ? g(rawData.toString()) : false
-            rawData.toString().includes('>RED') ? g(rawData.toString()) : false
+            !rawData.toString().includes('>REV') ? g(rawData.toString()) : false
+
             const { mobileID } = parseData(rawData)
             if (mobileID) {
                 // SEND ACK TO MOBILE
