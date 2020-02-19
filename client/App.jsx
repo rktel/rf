@@ -8,6 +8,7 @@ const App = () => {
     const [mobileTextFilter, setMobileTextFilter] = useState('')
     const [mobilesSelected, setMobilesSelected] = useState([])
     const [actionType, setActionType] = useState(undefined)
+    const [messageText, setMessageText] = useState('')
 
     const handleOnChangeMobileTextFilter = (event) => setMobileTextFilter(event.target.value)
     const handleOnClickCleanButton = () => setMobileTextFilter('')
@@ -18,7 +19,13 @@ const App = () => {
             setMobilesSelected(mobilesSelected.filter(el => el != mobil))
         }
     }
-
+    const handleOnChangeMessageText = (event) => setMessageText(event.target.value)
+    const handleOnClickSendButton = () => {
+        mobilesSelected.map(mobil => {
+            rstream.emit('writeCommand', mobil, messageText)
+        })
+    }
+    const handleOnClickCleanMessageButton = () => setMessageText('')
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
             setMobiles(mobileArray)
@@ -31,6 +38,9 @@ const App = () => {
     const sendCommand = (mobil) => {
         rstream.emit('writeCommand', mobil, '>QVR<')
     }
+
+
+
     const MobilesItems = () => {
         return (mobiles.filter(el => el.mobileID.indexOf(mobileTextFilter) >= 0)
             .map((mobil, index) =>
@@ -52,7 +62,10 @@ const App = () => {
     const MessageDrywall = () => {
         return (
             <div>
-                <h1>MessageDrywall</h1>
+                <h3>Message</h3>
+                <input placeholder="Message" type="text" onChange={handleOnChangeMessageText} value={messageText} />
+                <button onClick={handleOnClickCleanMessageButton}>CLEAN</button>
+                <button onClick={handleOnClickSendButton}>SEND</button>
             </div>
         )
     }
@@ -85,7 +98,7 @@ const App = () => {
                     <br />
                 </div>
                 <div className="flex-item" style={{ 'background': 'cornflowerblue' }}>
-                    <h4>Action</h4>
+                    <h4>Main Action</h4>
 
                     <button onClick={u => setActionType('message')}>MESSAGE</button>
                     <button onClick={u => setActionType('script')}>SCRIPT</button>
