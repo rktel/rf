@@ -12,6 +12,7 @@ const App = () => {
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
+            g(mobileArray)
             setMobiles(mobileArray)
         })
         rstream.on('countdown', countdown_ => {
