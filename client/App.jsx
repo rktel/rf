@@ -25,7 +25,7 @@ const App = () => {
             .map((mobil, index) =>
                 <tr key={mobil.mobileID}>
                     <td>{index + 1} </td>
-                    <td> <label>{mobil.mobileID}<input type="checkbox" name={mobil.mobileID} id={mobil.mobileID} value={mobil.mobileID}/></label></td>
+                    <td><label><input type="checkbox" name={mobil.mobileID} id={mobil.mobileID} value={mobil.mobileID}/>{mobil.mobileID}</label></td>
                     <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
                 </tr>))
     }

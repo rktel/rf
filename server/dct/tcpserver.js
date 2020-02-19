@@ -6,12 +6,13 @@ import { rstream } from '../../imports/api/streamers'
 function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // VARIABLES
     let mobilesArray = new Map()
-    const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10  // 10 seconds
-    const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2  // 120 seconds
-    const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 1 // 1 seconds
-    const TIMER_SERVER_RESTART_INTENT = 1000 * 2 // 2 seconds
-    const TIMER_SEND_COMMAND_INIT = 1000 * 60 // 60 seconds
-    const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 1 // 1 seconds
+    const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10  
+    const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2  
+    const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 30 
+    const TIMER_SERVER_RESTART_INTENT = 1000 * 2 
+    const TIMER_SEND_COMMAND_INIT = 1000 * 60 
+    const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 10 
+    const KEEP_ALIVE_SOCKET = 1000 * 30 
     const COMMAND_INIT_TO_MOBILE = '>QID<'
     const COUNTDOWN_TIME = new Date().addMinutes(20)
     // ACTION FUNCTIONS
@@ -42,6 +43,8 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     })
     // ON CONNECTIONS SOCKETS ON SERVER
     server.on('connection', socket => {
+        // KEEP ALIVE
+        socket.setKeepAlive(true, KEEP_ALIVE_SOCKET)
         // SET GENERAL TIMEOUT TO SOCKET
         socket.setTimeout(TIMER_GENERAL_TIMEOUT_SOCKET)
         // ONCE SEND SECOND COMMAND INIT
@@ -81,23 +84,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
         })
         // SOCKET ON DATA
         socket.on('data', rawData => {
-            function setMobileToMobilesArray(sock, container) {
-                const auxiliarContainer = container
-                if (sock.readable && sock.writable) {
-                    auxiliarContainer.set(sock['mobileID'], {
-                        mobileID: sock['mobileID'],
-                        readableWritable: true
-                    })
 
-                }
-                if (!sock.readable || !sock.writable) {
-                    auxiliarContainer.set(sock['mobileID'], {
-                        mobileID: sock['mobileID'],
-                        readableWritable: false
-                    })
-                }
-                return auxiliarContainer
-            }
             rawData.toString().includes('>RVR') ? g(rawData.toString()) : false
             const { mobileID } = parseData(rawData)
             if (mobileID) {
@@ -143,6 +130,15 @@ function parseData(data) {
     return false
 }
 // Support Functions
+
+function setMobileToMobilesArray(sock, container) {
+    const auxiliarContainer = container
+    auxiliarContainer.set(sock['mobileID'], {
+        mobileID: sock['mobileID']
+    })
+    return auxiliarContainer
+}
+
 Date.prototype.addMinutes = function (m) {
     this.setTime(this.getTime() + (m * 60 * 1000));
     return this;
