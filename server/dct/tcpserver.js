@@ -6,14 +6,10 @@ import { rstream } from '../../imports/api/streamers'
 function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // VARIABLES
     let mobilesArray = new Map()
-    const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10  
-    const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2  
-    const TIMER_CHECK_READABLE_WRITABLE_SOCKET = 1000 * 30 
-    const TIMER_SERVER_RESTART_INTENT = 1000 * 2 
-    const TIMER_SEND_COMMAND_INIT = 1000 * 60 
-    const TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK = 1000 * 10 
-    const KEEP_ALIVE_SOCKET = 1000 * 30 
-    const COMMAND_INIT_TO_MOBILE = '>QID<'
+    const TIMER_SEND_MOBILES_TO_CLIENT = 1000 * 10
+    const TIMER_GENERAL_TIMEOUT_SOCKET = 1000 * 60 * 2
+    const TIMER_SERVER_RESTART_INTENT = 1000 * 2
+    const KEEP_ALIVE_SOCKET = 1000 * 30
     const COUNTDOWN_TIME = new Date().addMinutes(20)
     // ACTION FUNCTIONS
     function sendMobilesToClient(mobilesArray) {
@@ -47,27 +43,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
         socket.setKeepAlive(true, KEEP_ALIVE_SOCKET)
         // SET GENERAL TIMEOUT TO SOCKET
         socket.setTimeout(TIMER_GENERAL_TIMEOUT_SOCKET)
-        // ONCE SEND SECOND COMMAND INIT
-        setTimeout(__ => {
-            if (socket.mobileID) socket.write(COMMAND_INIT_TO_MOBILE)
-        }, TIMER_SEND_COMMAND_INIT)
-        // LOOP CHECK READABLE & WRITEABLE
-        setInterval(__ => {
-            if (!socket.readable || !socket.writable) {
-                if (socket.mobileID) {
-                    function setMobileToMobilesArray(sock, container) {
-                        const auxiliarContainer = container
-                        auxiliarContainer.set(sock['mobileID'], {
-                            mobileID: sock['mobileID'],
-                            readableWritable: false
-                        })
-                        return auxiliarContainer
-                    }
-                    mobilesArray = setMobileToMobilesArray(socket, mobilesArray)
-                    socket.setTimeout(TIMER_TIMEOUT_NO_READABLE_WRITABLE_SOCK)
-                }
-            }
-        }, TIMER_CHECK_READABLE_WRITABLE_SOCKET)
+
         // STREAMER WRITE COMMAND FROM CLIENT
         rstream.on('writeCommand', (mobileIDFromClient, messageFromClient) => {
             if (socket.mobileID === mobileIDFromClient) {
@@ -91,22 +67,14 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
                 // SEND ACK TO MOBILE
                 sendRafaga(socket, mobileID)
                 // IS ONCE?
-                if (!socket['mobileID']) {
-                    socket['mobileID'] = mobileID
-                    mobilesArray = setMobileToMobilesArray(socket, mobilesArray)
-                } else {
-                    mobilesArray = setMobileToMobilesArray(socket, mobilesArray)
-                }
+                if (!socket['mobileID']) socket['mobileID'] = mobileID
+                mobilesArray = setMobileToMobilesArray(socket, mobilesArray)
             } else {
                 g('Trama desconocida o no tratada:', rawData.toString())
             }
         })
         // SOCKET ON TIMEOUT
-        socket.on('timeout', __ => {
-            //g('socket timeout', socket.mobileID);
-            // socket.end();
-            // socket.destroy();
-        });
+        socket.on('timeout', __ => { });
         // SOCKET ON CLOSE
         socket.on('close', hadError => g('socket:close:', socket.mobileID, 'Error Tx:', hadError))
         // SOCKET ON ERROR
@@ -148,7 +116,7 @@ Date.prototype.addMinutes = function (m) {
 serverNET(createServer, 7100)
 
 function sendRafaga(sock, command) {
-    for (let index = 0; index < 11; index++) {
+    for (let index = 0; index < 10; index++) {
         sock.write(command)
     }
 }
