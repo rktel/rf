@@ -100,8 +100,8 @@ const App = () => {
                 <div className="flex-item" style={{ 'background': 'cornflowerblue' }}>
                     <h4>Main Action</h4>
 
-                    <button onClick={setActionType('message')}>MESSAGE</button>
-                    <button onClick={setActionType('script')}>SCRIPT</button>
+                    <button onClick={u => setActionType('message')}>MESSAGE</button>
+                    <button onClick={u => setActionType('script')}>SCRIPT</button>
 
                     <h4>Selection</h4>
                     <table >
@@ -120,8 +120,8 @@ const App = () => {
 
                 </div>
                 <div className="flex-item" style={{ 'background': 'goldenrod' }}>
-                    {actionType == 'message' ? <MessageDrywall /> : null}
-                    {actionType == 'script' ? <ScriptDrywall /> : null}
+                    <MessageDrywall /> 
+                    <ScriptDrywall />
                 </div>
             </div>
         </div >
