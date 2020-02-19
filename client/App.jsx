@@ -36,16 +36,16 @@ const App = () => {
             .map((mobil, index) =>
                 <tr key={mobil.mobileID}>
                     <td>{index + 1} </td>
-                    <td><label><input type="checkbox" name={mobil.mobileID} id={mobil.mobileID} value={mobil.mobileID} />{mobil.mobileID}</label></td>
-                    <td><button onClick={() => sendCommand(mobil.mobileID)}>Send</button></td>
+                    <td>{mobil.mobileID}</td>
                     <td><button onClick={() => handleOnClickAddButton(mobil.mobileID)}>Add</button></td>
                 </tr>))
     }
     const MobileSelectedItems = () => {
         return (mobilesSelected.map((mobil, index) =>
-            <li key={index}>
-                {index + 1} - {mobil}
-            </li>
+            <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{mobil}</td>
+            </tr>
         ))
     }
     return (
@@ -60,7 +60,6 @@ const App = () => {
                             <tr>
                                 <th>#</th>
                                 <th>IMEI</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,7 +70,19 @@ const App = () => {
                 </div>
                 <div className="flex-item" style={{ 'background': 'blue' }}>
                     <h4>Selected</h4>
-                    <MobileSelectedItems />
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>IMEI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <MobileSelectedItems />
+                        </tbody>
+                    </table>
+                    <br />
+
                 </div>
                 <div className="flex-item" style={{ 'background': 'peru' }}> <h4>demo</h4> </div>
             </div>
