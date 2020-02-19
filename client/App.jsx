@@ -120,8 +120,10 @@ const App = () => {
 
                 </div>
                 <div className="flex-item" style={{ 'background': 'goldenrod' }}>
-                    <MessageDrywall /> 
-                    <ScriptDrywall />
+                    <h3>Message</h3>
+                    <input placeholder="Message" type="text" id="messageText"  />
+                    <button onClick={handleOnClickCleanMessageButton}>CLEAN</button>
+                    <button onClick={handleOnClickSendButton}>SEND</button>
                 </div>
             </div>
         </div >
