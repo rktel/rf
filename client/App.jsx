@@ -7,7 +7,6 @@ const App = () => {
     const [countdown, setCountdown] = useState('')
     const [mobileTextFilter, setMobileTextFilter] = useState('')
     const [mobilesSelected, setMobilesSelected] = useState([])
-    const [actionType, setActionType] = useState(undefined)
     const [messageText, setMessageText] = useState('')
 
     const handleOnChangeMobileTextFilter = (event) => setMobileTextFilter(event.target.value)
@@ -26,8 +25,7 @@ const App = () => {
         })
     }
     const handleOnClickCleanMessageButton = () => setMessageText('')
-    const handleOnClickViewMessage = () => setActionType('message')
-    const handleOnClickViewScript = () => setActionType('script')
+
 
     useEffect(() => {
         rstream.on('getMobilesFromServer', (mobileArray) => {
@@ -101,12 +99,7 @@ const App = () => {
                     <br />
                 </div>
                 <div className="flex-item" style={{ 'background': 'cornflowerblue' }}>
-                    <h4>Main Action</h4>
-
-                    <button >MESSAGE</button>
-                    <button >SCRIPT</button>
-
-                    <h4>Selection</h4>
+                    <h4>Selected devices</h4>
                     <table >
                         <thead>
                             <tr>
@@ -123,8 +116,8 @@ const App = () => {
 
                 </div>
                 <div className="flex-item" style={{ 'background': 'goldenrod' }}>
-                    {actionType == 'message' ? <MessageDrywall /> : false}
-                    {actionType == 'script' ? <ScriptDrywall /> : false}
+                    <MessageDrywall />
+                    <ScriptDrywall />
                 </div>
             </div>
         </div >
