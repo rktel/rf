@@ -103,8 +103,8 @@ const App = () => {
                 <div className="flex-item" style={{ 'background': 'cornflowerblue' }}>
                     <h4>Main Action</h4>
 
-                    <button onClick={handleOnClickViewMessage}>MESSAGE</button>
-                    <button onClick={handleOnClickViewScript}>SCRIPT</button>
+                    <button >MESSAGE</button>
+                    <button >SCRIPT</button>
 
                     <h4>Selection</h4>
                     <table >
