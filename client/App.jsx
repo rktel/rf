@@ -14,7 +14,7 @@ export default () => (
         {/* Top Navbar */}
         <Navbar title="Awesome App"></Navbar>
         {/* Toolbar */}
-        <Toolbar>
+        <Toolbar top>
           <Link>Link 1</Link>
           <Link>Link 2</Link>
         </Toolbar>
