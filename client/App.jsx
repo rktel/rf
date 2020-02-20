@@ -22,7 +22,7 @@ const App = () => {
     const handleOnChangeMessageText = (event) => setMessageText(event.target.value)
     const handleOnClickSendButton = () => {
         mobilesSelected.forEach(mobil => {
-           rstream.emit('writeCommand', mobil, messageText)
+            rstream.emit('writeCommand', mobil, messageText)
         })
     }
     const handleOnClickCleanMessageButton = () => setMessageText('')
@@ -62,14 +62,17 @@ const App = () => {
     const MessageDrywall = () => {
         return (
             <div>
-
+                <h3>Message</h3>
+                <input placeholder="Message" type="text" id="messageText" onChange={handleOnChangeMessageText} value={messageText} />
+                <button onClick={handleOnClickCleanMessageButton}>CLEAN</button>
+                <button onClick={handleOnClickSendButton}>SEND</button>
             </div>
         )
     }
     const ScriptDrywall = () => {
         return (
             <div>
-                <h1>ScriptDrywall</h1>
+                <h3>Script</h3>
             </div>
         )
     }
@@ -117,10 +120,8 @@ const App = () => {
 
                 </div>
                 <div className="flex-item" style={{ 'background': 'goldenrod' }}>
-                    <h3>Message</h3>
-                    <input placeholder="Message" type="text" id="messageText" onChange={handleOnChangeMessageText} value={messageText} />
-                    <button onClick={handleOnClickCleanMessageButton}>CLEAN</button>
-                    <button onClick={handleOnClickSendButton}>SEND</button>
+                    {actionType == 'message' ? <MessageDrywall /> : false}
+                    {actionType == 'script' ? <ScriptDrywall /> : false}
                 </div>
             </div>
         </div >
