@@ -44,7 +44,7 @@ export default () => {
                                     <ListItem key={mobil.mobileID}>
                                         <strong>{index + 1}</strong> =>
                                         <span>{mobil.mobileID}</span>
-                                        <Toggle  color="green" onChange={e=>g(e, mobil)}/>
+                                        <Toggle  color="green" onChange={e=>alert( mobil.mobileID)}/>
                                     </ListItem>
                                 ))}
                             </List>
