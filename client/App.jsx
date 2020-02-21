@@ -4,7 +4,7 @@ import g from '../imports/tools/log';
 import rstream from '../imports/api/streamers'
 
 {/*Components*/ }
-import { Block, BlockTitle, Row, Col, List, ListItem, Toggle, Searchbar, Navbar, Subnavbar } from 'framework7-react'
+import { Block, BlockTitle, Row, Col, List, ListItem, Toggle, Searchbar } from 'framework7-react'
 
 export default () => {
     {/* Use states */ }
@@ -43,7 +43,7 @@ export default () => {
                             <Searchbar
                                 placeholder="IMEI"
                                 value={textFilterMobile}
-                                onChange={setTextFilterMobile}
+                                onChange={onChangeTextFilterMobile}
                             ></Searchbar>
                             <List simpleList>
                                 {mobilesGroup
