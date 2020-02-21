@@ -4,7 +4,7 @@ import g from '../imports/tools/log';
 import rstream from '../imports/api/streamers'
 
 {/*Components*/ }
-import { Block, BlockTitle, Row, Col, List, ListItem, Toggle, Searchbar } from 'framework7-react'
+import { Block, BlockTitle, Row, Col, List, ListItem, Toggle, Searchbar,Navbar,Subnavbar } from 'framework7-react'
 
 export default () => {
     {/* Use states */ }
@@ -40,12 +40,15 @@ export default () => {
                     <Row>
                         <Col width="25">
                             <BlockTitle>Devices</BlockTitle>
-                            <Searchbar
-                                placeholder="IMEI"
-                                clearButton={true}
-                                value={textFilterMobile}
-                                onChange={onChangeTextFilterMobile}
-                            ></Searchbar>
+                            <Navbar title="Searchbar">
+      <Subnavbar inner={false}>
+        <Searchbar
+          searchContainer=".search-list"
+          searchIn=".item-title"
+          disableButton={!this.$theme.aurora}
+        ></Searchbar>
+      </Subnavbar>
+    </Navbar>
                             <List simpleList>
                                 {mobilesGroup
                                     .filter(item => item.mobileID.indexOf(textFilterMobile) >= 0)
