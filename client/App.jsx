@@ -73,7 +73,6 @@ export default () => {
                                     <List>
                                         <ListInput
                                             label="Message"
-                                            floatingLabel
                                             type="text"
                                             clearButton
                                             value={textCommand}
