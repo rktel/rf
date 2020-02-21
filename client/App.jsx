@@ -24,9 +24,9 @@ export default () => {
     {/* onChange */ }
     const onChangeTextFilterMobile = (event) => setTextFilterMobile(event.target.value)
     const onChangeTextCommand = (event) => setTextCommand(event.target.value)
+    const onChangeToggleSelectedMobile = (mobil) => mobilesSelected.indexOf(mobil) < 0 ? setMobilesSelected([...mobilesSelected, mobil]) : setMobilesSelected(mobilesSelected.filter(el => el != mobil))
     {/* onClick */ }
     const onClickSendCommand = () => mobilesSelected.forEach(mobil => rstream.emit('writeCommand', mobil, textCommand))
-    const onClickToggleSelectedMobile = () => mobilesSelected.indexOf(mobil) < 0 ? setMobilesSelected([...mobilesSelected, mobil]) : setMobilesSelected(mobilesSelected.filter(el => el != mobil))
     {/* Middle Components */ }
 
     {/* Main Render */ }
@@ -44,12 +44,22 @@ export default () => {
                                     <ListItem key={mobil.mobileID}>
                                         <strong>{index + 1}</strong> =>
                                         <span>{mobil.mobileID}</span>
-                                        <Toggle  color="green" onChange={e=>alert( mobil.mobileID)}/>
+                                        <Toggle color="green" onChange={() => onChangeToggleSelectedMobile(mobil.mobileID)} />
                                     </ListItem>
                                 ))}
                             </List>
                         </Col>
-                        <Col width="25">25% (.col-25)</Col>
+                        <Col width="25">
+                            <BlockTitle>Selected devices</BlockTitle>
+                            <List simpleList>
+                                {mobilesSelected.map((mobileID, index) => (
+                                    <ListItem key={mobileID}>
+                                        <strong>{index + 1}</strong> =>
+                                        <span>{mobileID}</span>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Col>
                         <Col width="50">50% (.col-50)</Col>
                     </Row>
                 </Block>
