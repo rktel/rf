@@ -70,18 +70,20 @@ export default () => {
                             <BlockTitle>Actions</BlockTitle>
                             <Row>
                                 <Col>
-                                    <ListInput
-                                        label="Message"
-                                        floatingLabel
-                                        type="text"
-                                        clearButton
-                                        value={textCommand}
-                                        onChange={onChangeTextCommand}
-                                        onInputClear={cleanTextCommand}
-                                        id="textCommand"
-                                        name="textCommand"
-                                    >
-                                    </ListInput>
+                                    <List>
+                                        <ListInput
+                                            label="Message"
+                                            floatingLabel
+                                            type="text"
+                                            clearButton
+                                            value={textCommand}
+                                            onChange={onChangeTextCommand}
+                                            onInputClear={cleanTextCommand}
+                                            id="textCommand"
+                                            name="textCommand"
+                                        >
+                                        </ListInput>
+                                    </List>
                                 </Col>
                             </Row>
                             <Row>
