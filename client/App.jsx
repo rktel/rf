@@ -3,7 +3,8 @@ import { App, View, Page } from 'framework7-react';
 import g from '../imports/tools/log';
 import rstream from '../imports/api/streamers'
 
-import { Block, BlockTitle, Row, Col, List, ListItem, Toggle } from 'framework7-react'
+{/*Components*/}
+import { Block, BlockTitle, Row, Col, List, ListItem, Toggle ,Searchbar} from 'framework7-react'
 
 export default () => {
     {/* Use states */ }
@@ -39,6 +40,13 @@ export default () => {
                     <Row>
                         <Col width="25">
                             <BlockTitle>Devices</BlockTitle>
+                            <Searchbar
+                                disableButtonText="Cancel"
+                                placeholder="IMEI"
+                                clearButton={true}
+                                value={textFilterMobile}
+                                onChange={onChangeTextFilterMobile}
+                            ></Searchbar>
                             <List simpleList>
                                 {mobilesGroup.map((mobil, index) => (
                                     <ListItem key={mobil.mobileID}>
