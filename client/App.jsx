@@ -76,7 +76,6 @@ export default () => {
                                     placeholder="Your name"
                                     clearButton
                                 >
-                                    <Icon icon="demo-list-icon" slot="media" />
                                 </ListInput>
                             </List>
                         </Col>
