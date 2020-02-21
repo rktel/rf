@@ -44,6 +44,7 @@ export default () => {
                                 placeholder="IMEI"
                                 value={textFilterMobile}
                                 onChange={onChangeTextFilterMobile}
+                                onClickClear= {cleanTextFilterMobile}
                             ></Searchbar>
                             <List simpleList>
                                 {mobilesGroup
