@@ -44,7 +44,7 @@ export default () => {
                                     <ListItem key={mobil.mobileID}>
                                         <strong>{index + 1}</strong> =>
                                         <span>{mobil.mobileID}</span>
-                                        <Toggle color="green" toggleChange={e=>g(e, mobil)}/>
+                                        <Toggle  color="green" change={e=>g(e, mobil)}/>
                                     </ListItem>
                                 ))}
                             </List>
