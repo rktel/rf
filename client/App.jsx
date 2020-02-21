@@ -68,28 +68,29 @@ export default () => {
                         </Col>
                         <Col width="50">
                             <BlockTitle>Actions</BlockTitle>
-                       
-                                <Row>
-                                    <Col>
-                                        <List noHairlinesMd>
-                                            <ListInput
-                                                label="Message"
-                                                floatingLabel
-                                                type="text"
-                                                clearButton
-                                                value={textCommand}
-                                                onChange={onChangeTextCommand}
-                                                onInputClear={cleanTextCommand}
-                                                id="textCommand"
-                                                name="textCommand"
-                                            >
-                                            </ListInput>
-                                        </List>
-                                    </Col>
-                                    <Col><Button onClick={onClickSendCommand} >Send</Button></Col>
-                                    <Col><Button fill>Script</Button></Col>
-                                </Row>
-                   
+                            <Row>
+                                <Col><Button fill>Script</Button></Col>
+                            </Row>
+                            <Row>
+                                <Col>
+
+                                    <Input
+                                        label="Message"
+                                        floatingLabel
+                                        type="text"
+                                        clearButton
+                                        value={textCommand}
+                                        onChange={onChangeTextCommand}
+                                        onInputClear={cleanTextCommand}
+                                        id="textCommand"
+                                        name="textCommand"
+                                    />
+
+
+                                </Col>
+                                <Col><Button onClick={onClickSendCommand} >Send</Button></Col>
+                            </Row>
+
                         </Col>
                     </Row>
                 </Block>
