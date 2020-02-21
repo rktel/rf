@@ -14,7 +14,7 @@ export default () => {
     const [textCommand, setTextCommand] = useState('')
     {/* Use Effect */ }
     useEffect(() => {
-        rstream.on('getMobilesFromServer', (mobiles) => setMobilesGroup(mobiles => g(mobiles)))
+        rstream.on('getMobilesFromServer', (mobiles) => setMobilesGroup(mobiles => mobiles))
     }, [])
     {/* Clean Text */ }
     const cleanTextFilterMobile = () => setTextFilterMobile('')
