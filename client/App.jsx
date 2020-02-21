@@ -17,7 +17,7 @@ export default () => {
             g(mobiles)
             setMobilesGroup(mobiles)
         })
-    })
+    },[])
     {/* Clean Text */ }
     const cleanTextFilterMobile = () => setTextFilterMobile('')
     const cleanTextCommand = () => setTextCommand('')
@@ -38,7 +38,7 @@ export default () => {
                 <Block>
                     <Row>
                         <Col width="25">
-                            <BlockTitle>Super Heroes</BlockTitle>
+                            <BlockTitle>Devices</BlockTitle>
                             <List simpleList>
                                 {mobilesGroup.map((mobil, index) => (
                                     <ListItem key={mobil.mobileID}>
