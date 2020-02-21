@@ -78,8 +78,8 @@ export default () => {
                                     onChange={onChangeTextCommand}
                                     onInputClear={cleanTextCommand}
                                 >
-                                    <Button onClick={onClickSendCommand} >Send</Button>
                                 </ListInput>
+                                <Button onClick={onClickSendCommand} >Send</Button>
                             </List>
                         </Col>
                     </Row>
