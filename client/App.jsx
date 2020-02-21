@@ -4,7 +4,7 @@ import g from '../imports/tools/log';
 import rstream from '../imports/api/streamers'
 
 {/*Components*/ }
-import { Block, BlockTitle, Row, Col, List, ListItem, Searchbar, Button } from 'framework7-react'
+import { Block, BlockTitle, Row, Col, List, ListItem, Searchbar, Button,Input } from 'framework7-react'
 
 export default () => {
     {/* Use states */ }
@@ -66,7 +66,17 @@ export default () => {
                                 ))}
                             </List>
                         </Col>
-                        <Col width="50">50% (.col-50)</Col>
+                        <Col width="50">
+                            <BlockTitle>Message</BlockTitle>
+                            <Input
+                                type="text"
+                                placeholder="Message"
+                                clearButton
+                                onInputClear={cleanTextCommand}
+                                value={textCommand}
+                                onChange={onChangeTextCommand}
+                            />
+                        </Col>
                     </Row>
                 </Block>
             </Page>
