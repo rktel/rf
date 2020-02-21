@@ -17,7 +17,7 @@ export default () => {
             g(mobiles)
             setMobilesGroup(mobiles)
         })
-    },[])
+    }, [])
     {/* Clean Text */ }
     const cleanTextFilterMobile = () => setTextFilterMobile('')
     const cleanTextCommand = () => setTextCommand('')
@@ -42,8 +42,9 @@ export default () => {
                             <List simpleList>
                                 {mobilesGroup.map((mobil, index) => (
                                     <ListItem key={mobil.mobileID}>
+                                        <strong>{index + 1}</strong> =>
                                         <span>{mobil.mobileID}</span>
-                                        <Toggle color="green" />
+                                        <Toggle color="green" toggleChange={e=>g(e, mobil)}/>
                                     </ListItem>
                                 ))}
                             </List>
