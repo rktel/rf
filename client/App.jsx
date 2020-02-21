@@ -4,7 +4,7 @@ import g from '../imports/tools/log';
 import rstream from '../imports/api/streamers'
 
 {/*Components*/ }
-import { Block, BlockTitle, Row, Col, List, ListItem, Toggle, Searchbar } from 'framework7-react'
+import { Block, BlockTitle, Row, Col, List, ListItem, Searchbar, Button } from 'framework7-react'
 
 export default () => {
     {/* Use states */ }
@@ -22,8 +22,8 @@ export default () => {
     {/* onChange */ }
     const onChangeTextFilterMobile = (event) => setTextFilterMobile(event.target.value)
     const onChangeTextCommand = (event) => setTextCommand(event.target.value)
-    const onChangeToggleSelectedMobile = (mobil) => mobilesSelected.indexOf(mobil) < 0 ? setMobilesSelected([...mobilesSelected, mobil]) : setMobilesSelected(mobilesSelected.filter(el => el != mobil))
     {/* onClick */ }
+    const onClickSelectedMobile = (mobil) => mobilesSelected.indexOf(mobil) < 0 ? setMobilesSelected([...mobilesSelected, mobil]) : setMobilesSelected(mobilesSelected.filter(el => el != mobil))
     const onClickSendCommand = () => mobilesSelected.forEach(mobil => rstream.emit('writeCommand', mobil, textCommand))
     {/* Middle Components */ }
 
@@ -50,7 +50,7 @@ export default () => {
                                         <ListItem key={mobil.mobileID}>
                                             <strong>{index + 1}</strong> =>
                                         <span>{mobil.mobileID}</span>
-                                            <Toggle color="green" onChange={() => onChangeToggleSelectedMobile(mobil.mobileID)} value={mobil.selected} />
+                                            <Button onClick={() => onClickSelectedMobile(mobil.mobileID)} >Add</Button>
                                         </ListItem>
                                     ))}
                             </List>
