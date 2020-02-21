@@ -41,7 +41,7 @@ export default () => {
                             <BlockTitle>Super Heroes</BlockTitle>
                             <List simpleList>
                                 {mobilesGroup.map((mobil, index) => (
-                                    <ListItem>
+                                    <ListItem key={mobil.mobileID}>
                                         <span>{mobil.mobileID}</span>
                                         <Toggle color="green" />
                                     </ListItem>
