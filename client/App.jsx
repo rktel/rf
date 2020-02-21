@@ -4,7 +4,7 @@ import g from '../imports/tools/log';
 import rstream from '../imports/api/streamers'
 
 {/*Components*/ }
-import { Block, BlockTitle, Row, Col, List, ListItem, Searchbar, Button, Input } from 'framework7-react'
+import { Block, BlockTitle, Row, Col, List, ListItem, Searchbar, Button, ListInput } from 'framework7-react'
 
 export default () => {
     {/* Use states */ }
@@ -69,12 +69,8 @@ export default () => {
                         <Col width="50">
                             <BlockTitle>Actions</BlockTitle>
                             <Row>
-                                <Col><Button fill>Script</Button></Col>
-                            </Row>
-                            <Row>
                                 <Col>
-
-                                    <Input
+                                    <ListInput
                                         label="Message"
                                         floatingLabel
                                         type="text"
@@ -84,13 +80,14 @@ export default () => {
                                         onInputClear={cleanTextCommand}
                                         id="textCommand"
                                         name="textCommand"
-                                    />
-
-
+                                    >
+                                    </ListInput>
                                 </Col>
-                                <Col><Button onClick={onClickSendCommand} >Send</Button></Col>
                             </Row>
-
+                            <Row>
+                                <Col><Button onClick={onClickSendCommand} >Send</Button></Col>
+                                <Col><Button raised>Script</Button></Col>
+                            </Row>
                         </Col>
                     </Row>
                 </Block>
