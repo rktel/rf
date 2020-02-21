@@ -68,7 +68,7 @@ export default () => {
                         </Col>
                         <Col width="50">
                             <BlockTitle>Actions</BlockTitle>
-                            <Block>
+                       
                                 <Row>
                                     <Col>
                                         <List noHairlinesMd>
@@ -89,7 +89,7 @@ export default () => {
                                     <Col><Button onClick={onClickSendCommand} >Send</Button></Col>
                                     <Col><Button fill>Script</Button></Col>
                                 </Row>
-                            </Block>
+                   
                         </Col>
                     </Row>
                 </Block>
