@@ -4,7 +4,7 @@ import g from '../imports/tools/log';
 import rstream from '../imports/api/streamers'
 
 {/*Components*/ }
-import { Block, BlockTitle, Row, Col, List, ListItem, Searchbar, Button, ListInput } from 'framework7-react'
+import { Block, BlockTitle, Row, Col, List, ListItem, Searchbar, Button, Input } from 'framework7-react'
 
 export default () => {
     {/* Use states */ }
