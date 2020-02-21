@@ -1,1 +1,1 @@
-export const rstream = new Meteor.Streamer('rstream')
+export default rstream = new Meteor.Streamer('rstream')

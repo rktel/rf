@@ -1,6 +1,6 @@
 import g from '../../imports/tools/log'
 import { createServer } from 'net'
-import { rstream } from '../../imports/api/streamers'
+import rstream from '../../imports/api/streamers'
 
 
 function serverNET(srv, portServer, hostServer = '0.0.0.0') {
