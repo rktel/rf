@@ -14,10 +14,7 @@ export default () => {
     const [textCommand, setTextCommand] = useState('')
     {/* Use Effect */ }
     useEffect(() => {
-        rstream.on('getMobilesFromServer', (mobiles) => {
-            g(mobiles)
-            setMobilesGroup(mobiles)
-        })
+        rstream.on('getMobilesFromServer', (mobiles) => setMobilesGroup(mobiles => g(mobiles)))
     }, [])
     {/* Clean Text */ }
     const cleanTextFilterMobile = () => setTextFilterMobile('')
@@ -44,7 +41,7 @@ export default () => {
                                 placeholder="IMEI"
                                 value={textFilterMobile}
                                 onChange={onChangeTextFilterMobile}
-                                onClickClear= {cleanTextFilterMobile}
+                                onClickClear={cleanTextFilterMobile}
                             ></Searchbar>
                             <List simpleList>
                                 {mobilesGroup
@@ -53,7 +50,7 @@ export default () => {
                                         <ListItem key={mobil.mobileID}>
                                             <strong>{index + 1}</strong> =>
                                         <span>{mobil.mobileID}</span>
-                                            <Toggle color="green" onChange={() => onChangeToggleSelectedMobile(mobil.mobileID)} />
+                                            <Toggle color="green" onChange={() => onChangeToggleSelectedMobile(mobil.mobileID)} value={mobil.selected} />
                                         </ListItem>
                                     ))}
                             </List>
