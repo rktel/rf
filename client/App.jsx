@@ -67,15 +67,18 @@ export default () => {
                             </List>
                         </Col>
                         <Col width="50">
-                            <BlockTitle>Message</BlockTitle>
+                            <BlockTitle>Actions</BlockTitle>
                             <List noHairlinesMd>
                                 <ListInput
-                                    label="Name"
+                                    label="Message"
                                     floatingLabel
                                     type="text"
-                                    placeholder="Your name"
                                     clearButton
+                                    value={textCommand}
+                                    onChange={onChangeTextCommand}
+                                    onInputClear={cleanTextCommand}
                                 >
+                                    <Button onClick={onClickSendCommand} >Send</Button>
                                 </ListInput>
                             </List>
                         </Col>
