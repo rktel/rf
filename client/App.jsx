@@ -68,7 +68,7 @@ export default () => {
                         </Col>
                         <Col width="50">
                             <BlockTitle>Actions</BlockTitle>
-                            <List noHairlinesMd>
+                 
                                 <ListInput
                                     label="Message"
                                     floatingLabel
@@ -77,10 +77,12 @@ export default () => {
                                     value={textCommand}
                                     onChange={onChangeTextCommand}
                                     onInputClear={cleanTextCommand}
-                                >
-                                </ListInput>
+                                    id="textCommand"
+                                    name="textCommand"
+                                />
+                
                                 <Button onClick={onClickSendCommand} >Send</Button>
-                            </List>
+                         
                         </Col>
                     </Row>
                 </Block>
