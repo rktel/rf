@@ -45,7 +45,6 @@ export default () => {
         <Searchbar
           searchContainer=".search-list"
           searchIn=".item-title"
-          disableButton={!this.$theme.aurora}
         ></Searchbar>
       </Subnavbar>
     </Navbar>
