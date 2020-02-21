@@ -40,7 +40,7 @@ export default () => {
                         <Col width="25">
                             <BlockTitle>Super Heroes</BlockTitle>
                             <List simpleList>
-                                {mobilesGroup.forEach((mobil, index) => (
+                                {mobilesGroup.map((mobil, index) => (
                                     <ListItem>
                                         <span>{mobil.mobileID}</span>
                                         <Toggle color="green" />
