@@ -14,11 +14,7 @@
       -1
   );
   function toogleSelectedList(mobileID) {
-    if (selectedList.indexOf(mobileID) >= 0) {
-      selectedList = selectedList.splice(selectedList.indexOf(mobileID), 1);
-    } else {
-      selectedList = selectedList.push(mobileID);
-    }
+      g(mobileID)
   }
 </script>
 
@@ -49,11 +45,7 @@
           <td>
             <button
               class="button is-solid is-small"
-              on:click={() => toogleSelectedList(item.mobileID)}>
-              {#if 1 == 1}
-                <i class="d-icon d-share-arrow is-small" />
-              {:else}e{/if}
-            </button>
+              on:click={() => toogleSelectedList(item.mobileID)} />
           </td>
         </tr>
       {/each}
