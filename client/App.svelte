@@ -14,10 +14,11 @@
       -1
   );
   function toogleSelectedList(mobileID) {
-    if (selectedList.indexOf(mobileID) == -1) [...selectedList, mobileID];
+    if (selectedList.indexOf(mobileID) == -1)
+      selectedList = [...selectedList, mobileID];
     else selectedList = selectedList.slice(selectedList.indexOf(mobileID), 1);
 
-    g(selectedList)
+    g(selectedList);
   }
 </script>
 
