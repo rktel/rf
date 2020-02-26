@@ -17,7 +17,7 @@
     if (selectedList.includes(mobileID)) {
       selectedList = selectedList.splice(selectedList.indexOf(mobileID), 1);
     } else {
-      selectedList = [...selectedList, mobileID];
+      selectedList = selectedList.push(mobileID);
     }
   }
 </script>
