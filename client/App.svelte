@@ -51,7 +51,13 @@
           <td>
             <button
               class="button is-solid is-small"
-              on:click={() => toogleSelectedList(item.mobileID)} />
+              on:click={() => toogleSelectedList(item.mobileID)}>
+              {#if selectedList.indexOf(item.mobileID) !== -1}
+                <i class="d-icon d-arrow-block-right is-small" />
+              {:else}
+                <i class="d-icon d-arrow-block-left is-small" />
+              {/if}
+            </button>
           </td>
         </tr>
       {/each}
