@@ -3,6 +3,7 @@
   import g from "../imports/tools/log.js";
 
   let mobiles = [];
+  let selectedList = [];
   let searchMobile = "";
   rstream.on("getMobilesFromServer", mobiles_ => {
     mobiles = mobiles_;
@@ -12,11 +13,16 @@
       item.mobileID.toLowerCase().indexOf(searchMobile.toLocaleLowerCase()) !==
       -1
   );
+  function toogleSelectedList(mobileID) {
+    if (selectedList.indexOf(mobileID) == -1) [...selectedList, mobileID];
+    else selectedList = selectedList.slice(selectedList.indexOf(mobileID), 1);
+
+    g(selectedList)
+  }
 </script>
 
 <div class="flex">
   <div class="box">
-
     <div class="input-group has-button">
       <div class="input">
         <input
@@ -24,12 +30,13 @@
           placeholder="Filter text"
           bind:value={searchMobile} />
       </div>
-      <button class="button is-primary has-icon">
-        <i
-          class="d-icon d-stop-warning is-small"
-          on:click={() => (searchMobile = '')} />
+      <button
+        class="button is-primary has-icon"
+        on:click={() => (searchMobile = '')}>
+        <i class="d-icon d-stop-warning is-small" />
       </button>
     </div>
+    <br />
     <table class="table">
       <tr>
         <th>IMEI</th>
@@ -39,7 +46,13 @@
         <tr>
           <td>{item.mobileID}</td>
           <td>
-            <button class="button is-solid">Add</button>
+            <button
+              class="button is-solid is-small"
+              on:click={() => toogleSelectedList(item.mobileID)}>
+              {#if 1 == 1}
+                <i class="d-icon d-share-arrow is-small" />
+              {:else}e{/if}
+            </button>
           </td>
         </tr>
       {/each}
