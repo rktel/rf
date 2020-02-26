@@ -16,7 +16,7 @@
   function toogleSelectedList(mobileID) {
     if (selectedList.indexOf(mobileID) == -1)
       selectedList = [...selectedList, mobileID];
-    else selectedList = selectedList.slice(selectedList.indexOf(mobileID), 1);
+    else selectedList = selectedList.splice(selectedList.indexOf(mobileID), 1);
 
     g(selectedList);
   }
@@ -60,5 +60,17 @@
     </table>
   </div>
 
+  <div class="box">
+    <table class="table">
+      <tr>
+        <th>IMEI</th>
+      </tr>
+      {#each selectedList as mobileID}
+        <tr>
+          <td>{mobileID}</td>
+        </tr>
+      {/each}
+    </table>
+  </div>
   <div class="box flex-auto">Flex Auto</div>
 </div>
