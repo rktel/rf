@@ -7,11 +7,7 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "bcrypt": "^3.0.6",
-    "framework7": "^5.4.2",
-    "framework7-react": "^5.4.2",
     "meteor-node-stubs": "^1.0.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-router-dom": "^5.1.2"
+    "svelte": "^3.19.1"
   }
 }
