@@ -14,11 +14,11 @@
       -1
   );
   function toogleSelectedList(mobileID) {
-    if (selectedList.indexOf(mobileID) == -1)
+    if (selectedList.includes(mobileID)) {
+      selectedList = selectedList.splice(selectedList.indexOf(mobileID), 1);
+    } else {
       selectedList = [...selectedList, mobileID];
-    else selectedList = selectedList.splice(selectedList.indexOf(mobileID), 1);
-
-    g(selectedList);
+    }
   }
 </script>
 
