@@ -14,7 +14,13 @@
       -1
   );
   function toogleSelectedList(mobileID) {
-      g(mobileID)
+    const index = selectedList.indexOf(mobileID);
+    if (index !== -1) {
+      selectedList.splice(index, 1);
+    } else {
+      selectedList.push(mobileID);
+    }
+    selectedList = selectedList;
   }
 </script>
 
