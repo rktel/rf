@@ -94,6 +94,16 @@
         on:click={() => (commandText = '')}>
         <i class="d-icon d-stop-warning is-small" />
       </button>
+      <button
+        class="button is-primary has-icon"
+        on:click={() => (commandText = '')}>
+        <i class="d-icon d-stop-warning is-small" />
+      </button>
+      <button
+        class="button is-primary has-icon"
+        on:click={() => (commandText = '')}>
+        <i class="d-icon d-stop-warning is-small" />
+      </button>
     </div>
   </div>
 </div>
