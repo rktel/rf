@@ -5,7 +5,7 @@
   let mobiles = [];
   let selectedList = [];
   let searchMobile = "";
-  let commandText = ""
+  let commandText = "";
   rstream.on("getMobilesFromServer", mobiles_ => {
     mobiles = mobiles_;
   });
@@ -22,6 +22,11 @@
       selectedList.push(mobileID);
     }
     selectedList = selectedList;
+  }
+  function sendCommand() {
+    if (commandText.length > 0 && selectedList.length > 0) {
+      selectedList.map(item => rstream.emit("writeCommand", item, commandText));
+    }
   }
 </script>
 
@@ -53,7 +58,7 @@
           <td>
             <button
               class="button is-small"
-              class:is-danger={selectedList.indexOf(item.mobileID) !== -1}
+              class:is-solid={selectedList.indexOf(item.mobileID) !== -1}
               on:click={() => toogleSelectedList(item.mobileID)}>
               {#if selectedList.indexOf(item.mobileID) !== -1}
                 <i class="d-icon d-arrow-block-left is-small" />
@@ -84,10 +89,7 @@
   <div class="box flex-auto">
     <div class="input-group has-button">
       <div class="input">
-        <input
-          type="text"
-          placeholder="Command"
-          bind:value={commandText} />
+        <input type="text" placeholder="Command" bind:value={commandText} />
       </div>
       <button
         class="button is-primary has-icon"
@@ -95,14 +97,14 @@
         <i class="d-icon d-stop-warning is-small" />
       </button>
       <button
-        class="button is-primary has-icon"
-        on:click={() => (commandText = '')}>
-        <i class="d-icon d-stop-warning is-small" />
+        class="button has-bg-lime-700 has-icon"
+        on:click={sendCommand}>
+        <i class="d-icon d-send is-small" />
       </button>
       <button
-        class="button is-primary has-icon"
-        on:click={() => (commandText = '')}>
-        <i class="d-icon d-stop-warning is-small" />
+        class="button has-bg-orange-500 has-icon"
+        on:click={() => alert('Send Script')}>
+        <i class="d-icon d-assignment-text is-small" />
       </button>
     </div>
   </div>
