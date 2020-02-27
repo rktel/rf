@@ -50,12 +50,12 @@
           <td>{item.mobileID}</td>
           <td>
             <button
-              class="button is-solid is-small"
+              class="button is-small" class:is-danger={selectedList.indexOf(item.mobileID) !== -1}
               on:click={() => toogleSelectedList(item.mobileID)}>
               {#if selectedList.indexOf(item.mobileID) !== -1}
-                <i class="d-icon d-arrow-block-right is-small" />
-              {:else}
                 <i class="d-icon d-arrow-block-left is-small" />
+              {:else}
+                <i class="d-icon d-arrow-block-right is-small" />
               {/if}
             </button>
           </td>
