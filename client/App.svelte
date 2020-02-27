@@ -5,6 +5,7 @@
   let mobiles = [];
   let selectedList = [];
   let searchMobile = "";
+  let commandText = ""
   rstream.on("getMobilesFromServer", mobiles_ => {
     mobiles = mobiles_;
   });
@@ -25,6 +26,7 @@
 </script>
 
 <div class="flex">
+  <!--b>LIST DEVICES</b-->
   <div class="box">
     <div class="input-group has-button">
       <div class="input">
@@ -50,7 +52,8 @@
           <td>{item.mobileID}</td>
           <td>
             <button
-              class="button is-small" class:is-danger={selectedList.indexOf(item.mobileID) !== -1}
+              class="button is-small"
+              class:is-danger={selectedList.indexOf(item.mobileID) !== -1}
               on:click={() => toogleSelectedList(item.mobileID)}>
               {#if selectedList.indexOf(item.mobileID) !== -1}
                 <i class="d-icon d-arrow-block-left is-small" />
@@ -64,6 +67,7 @@
     </table>
   </div>
 
+  <!--b>LIST SELECTED DEVICES</b-->
   <div class="box">
     <table class="table">
       <tr>
@@ -76,5 +80,20 @@
       {/each}
     </table>
   </div>
-  <div class="box flex-auto">Flex Auto</div>
+  <!--b>ACTIONS SEND MESSAGE AND START TASK</b-->
+  <div class="box flex-auto">
+    <div class="input-group has-button">
+      <div class="input">
+        <input
+          type="text"
+          placeholder="Command"
+          bind:value={commandText} />
+      </div>
+      <button
+        class="button is-primary has-icon"
+        on:click={() => (commandText = '')}>
+        <i class="d-icon d-stop-warning is-small" />
+      </button>
+    </div>
+  </div>
 </div>
