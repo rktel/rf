@@ -3,3 +3,4 @@
 </script>
 
 <h1>Peppa</h1>
+<Toolbar/>
