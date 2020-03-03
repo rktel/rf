@@ -1,7 +1,6 @@
 <script>
   import g from "../imports/tools/log.js";
-  import Toolbar from "../imports/ui/Toolbar";
-  import Sidebar from "../imports/ui/Sidebar";
+
   import stream from "../imports/api/streamer";
   import { selectedPeople_s } from "../imports/api/store";
   let people = [];
@@ -31,7 +30,7 @@
 
 
 <div id="main">
-  <Toolbar />
+
   <div>
     {#if selectedPeople.length > 0}
       <div class="box box-main m-4">
