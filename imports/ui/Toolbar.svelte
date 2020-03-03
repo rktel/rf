@@ -10,7 +10,7 @@
     } else {
       document.getElementById("mySidebar").style.width = "0";
       //document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("main").style.marginLeft = "0";
+     // document.getElementById("main").style.marginLeft = "0";
     }
   }
 </script>
