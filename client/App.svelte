@@ -1,6 +1,7 @@
 <script>
-  import g from "../imports/tools/log.js";
-
+  import g from "../imports/tools/log";
+  import Sidebar from "../imports/ui/Sidebar";
+  import Toolbar from "../imports//ui/Toolbar";
   import stream from "../imports/api/streamer";
   import { selectedPeople_s } from "../imports/api/store";
   let people = [];
@@ -23,11 +24,10 @@
     margin-left: 335px;
     /*padding: 20px;*/
   }
-  .box-main{
+  .box-main {
     height: calc(100vh - 70px);
   }
 </style>
-
 
 <div id="main">
 
