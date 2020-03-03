@@ -29,7 +29,7 @@
   }
 </style>
 
-<Sidebar {people} />
+
 <div id="main">
   <Toolbar />
   <div>
