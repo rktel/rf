@@ -1,8 +1,8 @@
 <script>
   import Toolbar from "../imports/ui/Toolbar";
-  import Sidebar from "../imports/ui/Sidebar";
+  import Drawer from "../imports/ui/Drawer";
 </script>
 
 <h1>Peppa</h1>
 <Toolbar/>
-<Sidebar/>
+<Drawer/>
