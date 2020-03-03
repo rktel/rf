@@ -1,5 +1,5 @@
 <script>
-  import { selectedPeople_s } from "../store.js";
+  import { selectedPeople_s } from "../imports/api/store.js";
   export let people;
   let selectedPeople = [];
   let filterText = "";
