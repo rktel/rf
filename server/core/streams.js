@@ -1,4 +1,4 @@
-import rstream from '../../imports/api/streamers'
+import rstream from '../../imports/api/streamer'
 
 rstream.allowRead('all')
 rstream.allowWrite('all')
