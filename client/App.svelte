@@ -1,7 +1,7 @@
 <script>
   import g from "../imports/tools/log";
-  import Sidebar from "../imports/ui/Sidebar";
-  import Toolbar from "../imports//ui/Toolbar";
+  import Sidebar from "../imports/ui/Sidebar.svelte";
+  import Toolbar from "../imports//ui/Toolbar.svelte";
   import stream from "../imports/api/streamer";
   import { selectedPeople_s } from "../imports/api/store";
   let people = [];
