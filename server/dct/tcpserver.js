@@ -1,6 +1,6 @@
 import g from '../../imports/tools/log'
 import { createServer } from 'net'
-import rstream from '../../imports/api/streamers'
+import stream from '../../imports/api/streamer'
 
 
 function serverNET(srv, portServer, hostServer = '0.0.0.0') {
@@ -13,8 +13,8 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     const COUNTDOWN_TIME = new Date().addMinutes(60) // 60 min
     // ACTION FUNCTIONS
     function sendMobilesToClient(mobilesArray) {
-        rstream.emit('getMobilesFromServer', mobilesArray)
-        rstream.emit('countdown', COUNTDOWN_TIME)
+        stream.emit('getMobilesFromServer', mobilesArray)
+        stream.emit('countdown', COUNTDOWN_TIME)
     }
     // SEND MOBILES TO CLIENT
     setInterval(__ => sendMobilesToClient(Array.from(mobilesArray.values())), TIMER_SEND_MOBILES_TO_CLIENT)
@@ -23,7 +23,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
     // SERVER LISTEN
     server.listen(portServer, hostServer, u => {
         g('Server TCP UP')
-        rstream.emit('countdown', COUNTDOWN_TIME)
+        stream.emit('countdown', COUNTDOWN_TIME)
     })
     // ON CLOSE SERVER
     server.on('close', __ => g('Server TCP Close'))
@@ -45,7 +45,7 @@ function serverNET(srv, portServer, hostServer = '0.0.0.0') {
         socket.setTimeout(TIMER_GENERAL_TIMEOUT_SOCKET)
 
         // STREAMER WRITE COMMAND FROM CLIENT
-        rstream.on('writeCommand', (mobileIDFromClient, messageFromClient) => {
+        stream.on('writeCommand', (mobileIDFromClient, messageFromClient, username) => {
             if (socket.mobileID === mobileIDFromClient) {
                 const writeCommandSuccess = socket.write(messageFromClient)
                 if (writeCommandSuccess) {
